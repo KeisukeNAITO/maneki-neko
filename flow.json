@@ -1,1 +1,94 @@
-[]
+[
+    {
+        "id": "a374d263.d8244",
+        "type": "tab",
+        "label": "フロー 1",
+        "disabled": false,
+        "info": ""
+    },
+    {
+        "id": "daee0b7e.4b9b18",
+        "type": "function",
+        "z": "a374d263.d8244",
+        "name": "売買履歴情報",
+        "func": "trade_history_model = {\n    market: \"\", // 市場\n    ticket: \"\", // ティッカー\n    name: \"\", // 名前\n    unit_price: \"\", // 単価\n    stock: \"\", // 株数\n    trade: \"\", // 売買\n    account: \"\", // 口座\n    delivery_date: \"\", // 受渡日\n    sequence: \"\", // シーケンス番号\n    update_date: \"\", // 登録日\n    delete_flag: \"\" // 削除フラグ\n};\n\nmsg.payload = trade_history_model;\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 120,
+        "y": 80,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "9ba5b12e.9fb56",
+        "type": "function",
+        "z": "a374d263.d8244",
+        "name": "配当履歴情報",
+        "func": "dividend_history_model = {\n    market: \"\", // 市場\n    ticket: \"\", // ティッカー\n    unit_price: \"\", // 配当単価\n    ex_rights_date: \"\" // 権利落ち日\n}\n\nmsg.payload = dividend_history_model;\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 120,
+        "y": 120,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "d31c3124.dc3bb",
+        "type": "function",
+        "z": "a374d263.d8244",
+        "name": "配当予想情報",
+        "func": "dividend_forecast_model = {\n    market: \"\", // 市場\n    ticket: \"\", // ティッカー\n    unit_price: \"\", // 配当単価\n    ex_rights_date: \"\" // 権利落ち日\n}\n\nmsg.payload = dividend_forecast_model;\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 120,
+        "y": 160,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "636bc9e.17fb338",
+        "type": "function",
+        "z": "a374d263.d8244",
+        "name": "市場履歴情報",
+        "func": "market_history_model = {\n    market: \"\", // 市場\n    ticket: \"\", // ティッカー\n    unit_price: \"\", // 単価\n    closing_date: \"\"// 年月日\n}\n\nmsg.payload = market_history_model;\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 120,
+        "y": 200,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "a7b388e5.8b2c08",
+        "type": "function",
+        "z": "a374d263.d8244",
+        "name": "市場最新情報",
+        "func": "market_flash_model = {\n    market: \"\", // 市場\n    ticket: \"\", // ティッカー\n    unit_price: \"\", // 単価\n    closing_date: \"\"// 年月日\n}\n\nmsg.payload = market_flash_model;\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 120,
+        "y": 240,
+        "wires": [
+            []
+        ]
+    }
+]
