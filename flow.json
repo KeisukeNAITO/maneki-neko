@@ -1,24 +1,323 @@
 [
     {
-        "id": "a374d263.d8244",
+        "id": "96650511.bea1c8",
         "type": "tab",
-        "label": "フロー 1",
+        "label": "売買履歴情報 コレクタ",
         "disabled": false,
         "info": ""
+    },
+    {
+        "id": "a374d263.d8244",
+        "type": "tab",
+        "label": "永続化マネージャ",
+        "disabled": false,
+        "info": ""
+    },
+    {
+        "id": "8d504cb3.b79d5",
+        "type": "subflow",
+        "name": "データ取得",
+        "info": "# データ取得\n\n## 入力パラメータ\n保存するファイル名を設定してください。\nファイル名は環境変数よりmsg.filenameが優先されます。\n\n|  #  |  パラメータ  |  概要  |\n| ---- | ---- | ---- |\n|  1  |  msg.filename  |  取得するファイル名  |\n|  2  |  FILE_NAME  |  取得するファイル名(環境変数)  |\n\n## 出力パラメータ\n取得したファイルを返します。\n出力1は設定ミスを示すメッセージです。\n出力2は取得したデータを返します。\nデータが取得できなかった場合、msg.payloadは空のメッセージを返します。\n\n|  #  |  パラメータ  |  概要  |\n| ---- | ---- | ---- |\n|  1  |  msg.payload  |  ロードしたデータ内容(データがない場合は空)  |\n|  2  |  msg.filename  |  入力パラメータをそのまま出力  |\n|  3  |  msg.error.code  |  ファイルの取得に失敗した場合のコード  |\n|  4  |  msg.error.message  |  ファイルの取得に失敗した場合のメッセージ  |",
+        "category": "",
+        "in": [
+            {
+                "x": 80,
+                "y": 60,
+                "wires": [
+                    {
+                        "id": "7216f92f.e20cb8"
+                    }
+                ]
+            }
+        ],
+        "out": [
+            {
+                "x": 1160,
+                "y": 60,
+                "wires": [
+                    {
+                        "id": "6fede1bf.f88be",
+                        "port": 0
+                    }
+                ]
+            },
+            {
+                "x": 1160,
+                "y": 180,
+                "wires": [
+                    {
+                        "id": "adfeb1b0.aad0f",
+                        "port": 0
+                    }
+                ]
+            }
+        ],
+        "env": [],
+        "meta": {},
+        "color": "#DEB887",
+        "inputLabels": [
+            "ファイル名"
+        ],
+        "outputLabels": [
+            "エラーメッセージ",
+            "取得データ(JSON形式)"
+        ],
+        "icon": "font-awesome/fa-hdd-o"
+    },
+    {
+        "id": "c7e7e8b2.d19e68",
+        "type": "subflow",
+        "name": "データ追加登録",
+        "info": "# データ追加登録\n\n## 入力パラメータ\n追加するファイル名を設定してください。\nファイル名は環境変数よりmsg.filenameが優先されます。\n\n|  #  |  パラメータ  |  概要  |\n| ---- | ---- | ---- |\n|  1  |  msg.payload  |  追加するデータ  |\n|  2  |  msg.filename  |  追加するファイル名  |\n|  3  |  FILE_NAME  |  追加するファイル名(環境変数)  |\n\n## 出力パラメータ\n追加したデータを返します。\n出力1は設定ミスを示すメッセージです。\n出力2は結合したデータを返します。\n\n|  #  |  パラメータ  |  概要  |\n| ---- | ---- | ---- |\n|  1  |  msg.payload  |  マージしたデータ内容  |\n|  2  |  msg.filename  |  入力パラメータをそのまま出力  |\n|  3  |  msg.error.code  |  ファイルの取得に失敗した場合のコード  |\n|  4  |  msg.error.message  |  ファイルの取得に失敗した場合のメッセージ  |",
+        "category": "",
+        "in": [
+            {
+                "x": 80,
+                "y": 60,
+                "wires": [
+                    {
+                        "id": "69004b94.2e1b94"
+                    }
+                ]
+            }
+        ],
+        "out": [
+            {
+                "x": 1120,
+                "y": 60,
+                "wires": [
+                    {
+                        "id": "ce021e0e.d7ec1",
+                        "port": 0
+                    }
+                ]
+            },
+            {
+                "x": 1120,
+                "y": 340,
+                "wires": [
+                    {
+                        "id": "c82818c3.f3bb08",
+                        "port": 0
+                    }
+                ]
+            }
+        ],
+        "env": [],
+        "meta": {},
+        "color": "#DEB887",
+        "inputLabels": [
+            "ファイル名"
+        ],
+        "outputLabels": [
+            "エラーメッセージ",
+            "結合データ(JSON形式)"
+        ],
+        "icon": "font-awesome/fa-hdd-o"
+    },
+    {
+        "id": "93587e1a.756c",
+        "type": "subflow",
+        "name": "データ登録",
+        "info": "# データ登録\n\n## 入力パラメータ\n登録するファイル名を設定してください。\nファイル名は環境変数よりmsg.filenameが優先されます。\n\n|  #  |  パラメータ  |  概要  |\n| ---- | ---- | ---- |\n|  1  |  msg.payload  |  追加するデータ  |\n|  2  |  msg.filename  |  追加するファイル名  |\n|  3  |  FILE_NAME  |  追加するファイル名(環境変数)  |\n\n## 出力パラメータ\n追加したデータを返します。\n出力1は設定ミスを示すメッセージです。\n出力2は登録結果のデータを返します。\n\n|  #  |  パラメータ  |  概要  |\n| ---- | ---- | ---- |\n|  1  |  msg.payload  |  マージしたデータ内容  |\n|  2  |  msg.filename  |  入力パラメータをそのまま出力  |\n|  3  |  msg.error.code  |  ファイルの取得に失敗した場合のコード  |\n|  4  |  msg.error.message  |  ファイルの取得に失敗した場合のメッセージ  |",
+        "category": "",
+        "in": [
+            {
+                "x": 80,
+                "y": 60,
+                "wires": [
+                    {
+                        "id": "d26ec622.5475e8"
+                    }
+                ]
+            }
+        ],
+        "out": [
+            {
+                "x": 1160,
+                "y": 60,
+                "wires": [
+                    {
+                        "id": "bb0d7567.5f4688",
+                        "port": 0
+                    }
+                ]
+            },
+            {
+                "x": 1160,
+                "y": 180,
+                "wires": [
+                    {
+                        "id": "37c14d9a.0d3232",
+                        "port": 0
+                    },
+                    {
+                        "id": "e1004631.d3bca8",
+                        "port": 0
+                    }
+                ]
+            }
+        ],
+        "env": [],
+        "meta": {},
+        "color": "#DEB887",
+        "inputLabels": [
+            "ファイル名"
+        ],
+        "outputLabels": [
+            "エラーメッセージ",
+            "取得データ(JSON形式)"
+        ],
+        "icon": "font-awesome/fa-hdd-o"
+    },
+    {
+        "id": "22bc5b3f.8ee744",
+        "type": "ui_tab",
+        "name": "TRADING HISTORY",
+        "icon": "dashboard",
+        "order": 1,
+        "disabled": false,
+        "hidden": false
+    },
+    {
+        "id": "7a150446.5eb45c",
+        "type": "ui_group",
+        "name": "デフォルト",
+        "tab": "",
+        "disp": true,
+        "width": "6",
+        "collapse": false
+    },
+    {
+        "id": "fa70cfdf.23743",
+        "type": "ui_group",
+        "name": "REGISTRATION",
+        "tab": "22bc5b3f.8ee744",
+        "order": 1,
+        "disp": true,
+        "width": "6",
+        "collapse": false
+    },
+    {
+        "id": "c4cbeafa.163d58",
+        "type": "ui_group",
+        "name": "LOG",
+        "tab": "22bc5b3f.8ee744",
+        "order": 2,
+        "disp": true,
+        "width": "12",
+        "collapse": false
+    },
+    {
+        "id": "726d8ec4.b428f",
+        "type": "ui_base",
+        "theme": {
+            "name": "theme-dark",
+            "lightTheme": {
+                "default": "#0094CE",
+                "baseColor": "#0094CE",
+                "baseFont": "-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen-Sans,Ubuntu,Cantarell,Helvetica Neue,sans-serif",
+                "edited": true,
+                "reset": false
+            },
+            "darkTheme": {
+                "default": "#097479",
+                "baseColor": "#097479",
+                "baseFont": "-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen-Sans,Ubuntu,Cantarell,Helvetica Neue,sans-serif",
+                "edited": true,
+                "reset": false
+            },
+            "customTheme": {
+                "name": "Untitled Theme 1",
+                "default": "#4B7930",
+                "baseColor": "#4B7930",
+                "baseFont": "-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen-Sans,Ubuntu,Cantarell,Helvetica Neue,sans-serif"
+            },
+            "themeState": {
+                "base-color": {
+                    "default": "#097479",
+                    "value": "#097479",
+                    "edited": false
+                },
+                "page-titlebar-backgroundColor": {
+                    "value": "#097479",
+                    "edited": false
+                },
+                "page-backgroundColor": {
+                    "value": "#111111",
+                    "edited": false
+                },
+                "page-sidebar-backgroundColor": {
+                    "value": "#333333",
+                    "edited": false
+                },
+                "group-textColor": {
+                    "value": "#0eb8c0",
+                    "edited": false
+                },
+                "group-borderColor": {
+                    "value": "#555555",
+                    "edited": false
+                },
+                "group-backgroundColor": {
+                    "value": "#333333",
+                    "edited": false
+                },
+                "widget-textColor": {
+                    "value": "#eeeeee",
+                    "edited": false
+                },
+                "widget-backgroundColor": {
+                    "value": "#097479",
+                    "edited": false
+                },
+                "widget-borderColor": {
+                    "value": "#333333",
+                    "edited": false
+                },
+                "base-font": {
+                    "value": "-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen-Sans,Ubuntu,Cantarell,Helvetica Neue,sans-serif"
+                }
+            },
+            "angularTheme": {
+                "primary": "indigo",
+                "accents": "blue",
+                "warn": "red",
+                "background": "grey"
+            }
+        },
+        "site": {
+            "name": "\"maneki-neko\" the dividend / stock visualization app.",
+            "hideToolbar": "false",
+            "allowSwipe": "false",
+            "lockMenu": "false",
+            "allowTempTheme": "true",
+            "dateFormat": "YYYY/MM/DD",
+            "sizes": {
+                "sx": 48,
+                "sy": 48,
+                "gx": 6,
+                "gy": 6,
+                "cx": 6,
+                "cy": 6,
+                "px": 0,
+                "py": 0
+            }
+        }
     },
     {
         "id": "daee0b7e.4b9b18",
         "type": "function",
         "z": "a374d263.d8244",
         "name": "売買履歴情報",
-        "func": "trade_history_model = {\n    market: \"\", // 市場\n    ticket: \"\", // ティッカー\n    name: \"\", // 名前\n    unit_price: \"\", // 単価\n    stock: \"\", // 株数\n    trade: \"\", // 売買\n    account: \"\", // 口座\n    delivery_date: \"\", // 受渡日\n    sequence: \"\", // シーケンス番号\n    update_date: \"\", // 登録日\n    delete_flag: \"\" // 削除フラグ\n};\n\nmsg.payload = trade_history_model;\nreturn msg;",
+        "func": "trade_history_model = {\n    market: \"\", // 市場\n    ticket: \"\", // ティッカー\n    name: \"\", // 名前\n    unit_price: \"\", // 単価\n    share: \"\", // 株数\n    trade: \"\", // 売買\n    account: \"\", // 口座\n    delivery_date: \"\", // 受渡日\n    sequence: \"\", // シーケンス番号\n    update_date: \"\", // 登録日\n    delete_flag: \"\" // 削除フラグ\n};\n\nmsg.payload = trade_history_model;\nreturn msg;",
         "outputs": 1,
         "noerr": 0,
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 120,
-        "y": 80,
+        "x": 140,
+        "y": 60,
         "wires": [
             []
         ]
@@ -34,8 +333,8 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 120,
-        "y": 120,
+        "x": 140,
+        "y": 100,
         "wires": [
             []
         ]
@@ -51,8 +350,8 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 120,
-        "y": 160,
+        "x": 360,
+        "y": 60,
         "wires": [
             []
         ]
@@ -68,8 +367,8 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 120,
-        "y": 200,
+        "x": 360,
+        "y": 100,
         "wires": [
             []
         ]
@@ -85,10 +384,2119 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 120,
-        "y": 240,
+        "x": 360,
+        "y": 140,
         "wires": [
             []
+        ]
+    },
+    {
+        "id": "73ec9d3.3ff7864",
+        "type": "switch",
+        "z": "96650511.bea1c8",
+        "name": "処理種別切り替え",
+        "property": "topic",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "eq",
+                "v": "market",
+                "vt": "str"
+            },
+            {
+                "t": "eq",
+                "v": "ticker",
+                "vt": "str"
+            },
+            {
+                "t": "eq",
+                "v": "name",
+                "vt": "str"
+            },
+            {
+                "t": "eq",
+                "v": "price",
+                "vt": "str"
+            },
+            {
+                "t": "eq",
+                "v": "share",
+                "vt": "str"
+            },
+            {
+                "t": "eq",
+                "v": "account",
+                "vt": "str"
+            },
+            {
+                "t": "eq",
+                "v": "delivery_date",
+                "vt": "str"
+            },
+            {
+                "t": "eq",
+                "v": "trade",
+                "vt": "str"
+            },
+            {
+                "t": "else"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 9,
+        "x": 690,
+        "y": 140,
+        "wires": [
+            [
+                "244dd4c9.fd3fec"
+            ],
+            [
+                "244dd4c9.fd3fec"
+            ],
+            [
+                "244dd4c9.fd3fec"
+            ],
+            [
+                "244dd4c9.fd3fec"
+            ],
+            [
+                "244dd4c9.fd3fec"
+            ],
+            [
+                "244dd4c9.fd3fec"
+            ],
+            [
+                "244dd4c9.fd3fec"
+            ],
+            [
+                "3d6cf9ef.5732d6"
+            ],
+            [
+                "bec5d67e.05d9a8"
+            ]
+        ]
+    },
+    {
+        "id": "e30dff5a.54982",
+        "type": "change",
+        "z": "96650511.bea1c8",
+        "name": "表示クリア 指示",
+        "rules": [
+            {
+                "t": "set",
+                "p": "topic",
+                "pt": "msg",
+                "to": "clear",
+                "tot": "str"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 1000,
+        "y": 280,
+        "wires": [
+            [
+                "1f54da03.f1dc16",
+                "5560a3d4.d111fc"
+            ]
+        ]
+    },
+    {
+        "id": "244dd4c9.fd3fec",
+        "type": "function",
+        "z": "96650511.bea1c8",
+        "name": "一時データ 保存",
+        "func": "flow.set(msg.topic, msg.payload);\n\nreturn msg;\n",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 960,
+        "y": 100,
+        "wires": [
+            [
+                "1f54da03.f1dc16",
+                "6a0a03b.df33afc"
+            ]
+        ]
+    },
+    {
+        "id": "7006b677.11eaf8",
+        "type": "function",
+        "z": "96650511.bea1c8",
+        "name": "表示更新",
+        "func": "let market, ticketname, price, share, account, delivery_date, trade;\nif (msg.topic === \"clear\") {\n    market = { payload: \"\", enabled: true };\n    ticket = { payload: \"\", enabled: true };\n    name = { payload: \"\", enabled: true };\n    price = { payload: \"\", enabled: true };\n    share = { payload: \"\", enabled: true };\n    account = { payload: \"\", enabled: true };\n    delivery_date = { payload: new Date(), enabled: true };\n    trade = { enabled: false };\n    node.status({ fill: \"grey\", shape: \"dot\", text: \"clear\" });\n} else {\n    market = { payload: flow.get(\"market\"), enabled: true };\n    ticket = { payload: flow.get(\"ticker\"), enabled: true };\n    name = { payload: flow.get(\"name\"), enabled: true };\n    price = { payload: flow.get(\"price\"), enabled: true };\n    share = { payload: flow.get(\"share\"), enabled: true };\n    account = { payload: flow.get(\"account\"), enabled: true };\n    delivery_date = { payload: flow.get(\"delivery_date\"), enabled: true };\n    trade = { enabled: check_turn_on_trade_button() };\n}\nreturn [market, ticket, name, price, share, account, delivery_date, trade];\n\n\nfunction check_turn_on_trade_button() {\n    // 売買ボタンを有効化に必要なキー()が登録済みかチェック\n    // 前提キー: 市場, ティッカー, 名前, 単価, 株数, 口座, 受渡日.\n\n    premise_keys = [\"market\", \"ticker\", \"name\", \"price\", \"share\", \"account\", \"delivery_date\"];\n    for (const key_id of premise_keys) {\n        if (flow.keys().indexOf(key_id) === -1) {\n            // 足りないキーがある\n            node.status({ fill: \"yellow\", shape: \"dot\", text: \"turn off trade button by \" + key_id });\n            return false;\n        }\n    }\n    // 必要な事前キーが登録済み\n    node.status({ fill: \"blue\", shape: \"dot\", text: \"turn on trade button\" });\n    return true;\n}\n",
+        "outputs": 8,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 200,
+        "y": 180,
+        "wires": [
+            [
+                "c066b261.875f2"
+            ],
+            [
+                "87e9b426.05b548"
+            ],
+            [
+                "71f7aceb.07eea4"
+            ],
+            [
+                "206c30d9.4e56f"
+            ],
+            [
+                "5db46167.bf9e9"
+            ],
+            [
+                "206ffff4.e09cd"
+            ],
+            [
+                "f2ba4197.443b8"
+            ],
+            [
+                "f7785e7b.1538c",
+                "7d6fcd9.e492534"
+            ]
+        ]
+    },
+    {
+        "id": "5593bffa.3d79f",
+        "type": "link in",
+        "z": "96650511.bea1c8",
+        "name": "至 一時保存",
+        "links": [
+            "1f54da03.f1dc16"
+        ],
+        "x": 75,
+        "y": 100,
+        "wires": [
+            [
+                "7006b677.11eaf8"
+            ]
+        ]
+    },
+    {
+        "id": "1f54da03.f1dc16",
+        "type": "link out",
+        "z": "96650511.bea1c8",
+        "name": "自 表示更新",
+        "links": [
+            "5593bffa.3d79f"
+        ],
+        "x": 1235,
+        "y": 100,
+        "wires": []
+    },
+    {
+        "id": "3d6cf9ef.5732d6",
+        "type": "change",
+        "z": "96650511.bea1c8",
+        "name": "売買履歴情報 積み替え",
+        "rules": [
+            {
+                "t": "set",
+                "p": "temp",
+                "pt": "msg",
+                "to": "payload",
+                "tot": "msg"
+            },
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "{}",
+                "tot": "json"
+            },
+            {
+                "t": "set",
+                "p": "payload.trade",
+                "pt": "msg",
+                "to": "temp",
+                "tot": "msg"
+            },
+            {
+                "t": "delete",
+                "p": "temp",
+                "pt": "msg"
+            },
+            {
+                "t": "set",
+                "p": "payload.market",
+                "pt": "msg",
+                "to": "market",
+                "tot": "flow"
+            },
+            {
+                "t": "set",
+                "p": "payload.ticker",
+                "pt": "msg",
+                "to": "ticker",
+                "tot": "flow"
+            },
+            {
+                "t": "set",
+                "p": "payload.name",
+                "pt": "msg",
+                "to": "name",
+                "tot": "flow"
+            },
+            {
+                "t": "set",
+                "p": "payload.price",
+                "pt": "msg",
+                "to": "price",
+                "tot": "flow"
+            },
+            {
+                "t": "set",
+                "p": "payload.share",
+                "pt": "msg",
+                "to": "share",
+                "tot": "flow"
+            },
+            {
+                "t": "set",
+                "p": "payload.account",
+                "pt": "msg",
+                "to": "account",
+                "tot": "flow"
+            },
+            {
+                "t": "set",
+                "p": "payload.delivery_date",
+                "pt": "msg",
+                "to": "delivery_date",
+                "tot": "flow"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 990,
+        "y": 200,
+        "wires": [
+            [
+                "5700cf6a.5dcfb",
+                "cac10f0c.06273"
+            ]
+        ]
+    },
+    {
+        "id": "6a0a03b.df33afc",
+        "type": "debug",
+        "z": "96650511.bea1c8",
+        "name": "",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 970,
+        "y": 140,
+        "wires": []
+    },
+    {
+        "id": "47f4461a.5d6448",
+        "type": "comment",
+        "z": "96650511.bea1c8",
+        "name": "Dashbord Input",
+        "info": "",
+        "x": 440,
+        "y": 60,
+        "wires": []
+    },
+    {
+        "id": "fa9127e9.373bc8",
+        "type": "comment",
+        "z": "96650511.bea1c8",
+        "name": "Strage Output",
+        "info": "",
+        "x": 1290,
+        "y": 200,
+        "wires": []
+    },
+    {
+        "id": "26ab2f25.abd4e",
+        "type": "inject",
+        "z": "96650511.bea1c8",
+        "name": "表示初期化",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": true,
+        "onceDelay": "3",
+        "topic": "clear",
+        "payload": "init_registration",
+        "payloadType": "str",
+        "x": 710,
+        "y": 280,
+        "wires": [
+            [
+                "8e7286f1.b7b4d8"
+            ]
+        ]
+    },
+    {
+        "id": "5560a3d4.d111fc",
+        "type": "debug",
+        "z": "96650511.bea1c8",
+        "name": "",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 970,
+        "y": 320,
+        "wires": []
+    },
+    {
+        "id": "bec5d67e.05d9a8",
+        "type": "debug",
+        "z": "96650511.bea1c8",
+        "name": "不明なトピック",
+        "active": true,
+        "tosidebar": true,
+        "console": true,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 970,
+        "y": 380,
+        "wires": []
+    },
+    {
+        "id": "c82818c3.f3bb08",
+        "type": "file",
+        "z": "c7e7e8b2.d19e68",
+        "name": "データ 登録",
+        "filename": "",
+        "appendNewline": false,
+        "createDir": true,
+        "overwriteFile": "true",
+        "encoding": "utf8",
+        "x": 890,
+        "y": 340,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "be5d1c99.bc738",
+        "type": "change",
+        "z": "a374d263.d8244",
+        "name": "永続化ファイル名",
+        "rules": [
+            {
+                "t": "set",
+                "p": "trade_history",
+                "pt": "flow",
+                "to": "trade_history.json",
+                "tot": "str"
+            },
+            {
+                "t": "set",
+                "p": "dividend_history",
+                "pt": "flow",
+                "to": "dividend_history.json",
+                "tot": "str"
+            },
+            {
+                "t": "set",
+                "p": "dividend_forecast",
+                "pt": "flow",
+                "to": "dividend_forecast.json",
+                "tot": "str"
+            },
+            {
+                "t": "set",
+                "p": "market_history",
+                "pt": "flow",
+                "to": "market_history.json",
+                "tot": "str"
+            },
+            {
+                "t": "set",
+                "p": "market_flash",
+                "pt": "flow",
+                "to": "market_flash.json",
+                "tot": "str"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 610,
+        "y": 60,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "bbbea59b.4ea288",
+        "type": "file in",
+        "z": "c7e7e8b2.d19e68",
+        "name": "データ 取得",
+        "filename": "",
+        "format": "utf8",
+        "chunk": false,
+        "sendError": false,
+        "encoding": "utf8",
+        "x": 570,
+        "y": 220,
+        "wires": [
+            [
+                "7fdc36d4.1c1378"
+            ]
+        ]
+    },
+    {
+        "id": "a1fd7ee.e43158",
+        "type": "change",
+        "z": "a374d263.d8244",
+        "name": "売買履歴情報",
+        "rules": [
+            {
+                "t": "set",
+                "p": "filename",
+                "pt": "msg",
+                "to": ".node-red/maneki-neko/trade_history.json",
+                "tot": "str"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 600,
+        "y": 100,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "7fdc36d4.1c1378",
+        "type": "function",
+        "z": "c7e7e8b2.d19e68",
+        "name": "データ 結合",
+        "func": "const load_data = msg.payload || \"[]\";\nmsg.payload = JSON.parse(load_data);\nmsg.payload.push(msg.temp);\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 850,
+        "y": 220,
+        "wires": [
+            [
+                "ea1a5f9f.da989"
+            ]
+        ]
+    },
+    {
+        "id": "5700cf6a.5dcfb",
+        "type": "change",
+        "z": "96650511.bea1c8",
+        "name": "一時データ 初期化",
+        "rules": [
+            {
+                "t": "delete",
+                "p": "market",
+                "pt": "flow"
+            },
+            {
+                "t": "delete",
+                "p": "ticket",
+                "pt": "flow"
+            },
+            {
+                "t": "delete",
+                "p": "name",
+                "pt": "flow"
+            },
+            {
+                "t": "delete",
+                "p": "price",
+                "pt": "flow"
+            },
+            {
+                "t": "delete",
+                "p": "share",
+                "pt": "flow"
+            },
+            {
+                "t": "delete",
+                "p": "account",
+                "pt": "flow"
+            },
+            {
+                "t": "set",
+                "p": "delivery_date",
+                "pt": "flow",
+                "to": "",
+                "tot": "date"
+            },
+            {
+                "t": "delete",
+                "p": "trade",
+                "pt": "flow"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 1010,
+        "y": 240,
+        "wires": [
+            [
+                "e30dff5a.54982"
+            ]
+        ]
+    },
+    {
+        "id": "e171af39.486c4",
+        "type": "catch",
+        "z": "c7e7e8b2.d19e68",
+        "name": "データ 取得失敗",
+        "scope": [
+            "bbbea59b.4ea288"
+        ],
+        "uncaught": false,
+        "x": 580,
+        "y": 260,
+        "wires": [
+            [
+                "7fdc36d4.1c1378"
+            ]
+        ]
+    },
+    {
+        "id": "f13c954d.48ed58",
+        "type": "change",
+        "z": "c7e7e8b2.d19e68",
+        "name": "一時データ 削除",
+        "rules": [
+            {
+                "t": "delete",
+                "p": "temp",
+                "pt": "msg"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 900,
+        "y": 300,
+        "wires": [
+            [
+                "c82818c3.f3bb08"
+            ]
+        ]
+    },
+    {
+        "id": "c13a1693.8cd6b8",
+        "type": "watch",
+        "z": "96650511.bea1c8",
+        "name": "売買履歴情報ログ 更新監視",
+        "files": ".node-red/maneki-neko/trade_history.json",
+        "recursive": false,
+        "x": 180,
+        "y": 640,
+        "wires": [
+            [
+                "72a018.8e18bfe8"
+            ]
+        ]
+    },
+    {
+        "id": "7eb87141.3b1d7",
+        "type": "debug",
+        "z": "96650511.bea1c8",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 150,
+        "y": 860,
+        "wires": []
+    },
+    {
+        "id": "ec18a5e5.e299d8",
+        "type": "comment",
+        "z": "96650511.bea1c8",
+        "name": "売買履歴情報 登録",
+        "info": "",
+        "x": 130,
+        "y": 40,
+        "wires": []
+    },
+    {
+        "id": "cd0c5437.85ec68",
+        "type": "comment",
+        "z": "96650511.bea1c8",
+        "name": "売買履歴情報ログ 表示",
+        "info": "",
+        "x": 140,
+        "y": 540,
+        "wires": []
+    },
+    {
+        "id": "e5c7278c.dc4698",
+        "type": "inject",
+        "z": "96650511.bea1c8",
+        "name": "表示初期化",
+        "props": [
+            {
+                "p": "payload"
+            }
+        ],
+        "repeat": "1",
+        "crontab": "",
+        "once": true,
+        "onceDelay": "3",
+        "topic": "",
+        "payload": "init_trading_log",
+        "payloadType": "str",
+        "x": 170,
+        "y": 680,
+        "wires": [
+            [
+                "72a018.8e18bfe8"
+            ]
+        ]
+    },
+    {
+        "id": "beeee802.a9f198",
+        "type": "comment",
+        "z": "96650511.bea1c8",
+        "name": "Strage Update / Initialize",
+        "info": "",
+        "x": 170,
+        "y": 600,
+        "wires": []
+    },
+    {
+        "id": "856facd1.b3077",
+        "type": "file in",
+        "z": "8d504cb3.b79d5",
+        "name": "データ 取得",
+        "filename": "",
+        "format": "utf8",
+        "chunk": false,
+        "sendError": false,
+        "encoding": "utf8",
+        "x": 530,
+        "y": 180,
+        "wires": [
+            [
+                "adfeb1b0.aad0f"
+            ]
+        ]
+    },
+    {
+        "id": "b64b173f.7934d8",
+        "type": "catch",
+        "z": "8d504cb3.b79d5",
+        "name": "データ 取得失敗",
+        "scope": [
+            "856facd1.b3077"
+        ],
+        "uncaught": false,
+        "x": 540,
+        "y": 220,
+        "wires": [
+            [
+                "bc2f9cc.3e1bf6"
+            ]
+        ]
+    },
+    {
+        "id": "cac10f0c.06273",
+        "type": "subflow:c7e7e8b2.d19e68",
+        "z": "96650511.bea1c8",
+        "name": "売買履歴情報ログ 追加登録",
+        "env": [
+            {
+                "name": "FILE_NAME",
+                "value": ".node-red/maneki-neko/trade_history.json",
+                "type": "str"
+            }
+        ],
+        "x": 1340,
+        "y": 240,
+        "wires": [
+            [
+                "7b7a03e1.88aafc"
+            ],
+            [
+                "a7834df0.f14b9"
+            ]
+        ]
+    },
+    {
+        "id": "72a018.8e18bfe8",
+        "type": "subflow:8d504cb3.b79d5",
+        "z": "96650511.bea1c8",
+        "name": "売買履歴情報ログ データ取得",
+        "env": [
+            {
+                "name": "FILE_NAME",
+                "value": ".node-red/maneki-neko/trade_history.json",
+                "type": "str"
+            }
+        ],
+        "x": 530,
+        "y": 640,
+        "wires": [
+            [
+                "29347bb9.e75c84"
+            ],
+            [
+                "fefb1b5b.c3fe08"
+            ]
+        ]
+    },
+    {
+        "id": "ea1a5f9f.da989",
+        "type": "json",
+        "z": "c7e7e8b2.d19e68",
+        "name": "",
+        "property": "payload",
+        "action": "",
+        "pretty": false,
+        "x": 870,
+        "y": 260,
+        "wires": [
+            [
+                "f13c954d.48ed58"
+            ]
+        ]
+    },
+    {
+        "id": "adfeb1b0.aad0f",
+        "type": "json",
+        "z": "8d504cb3.b79d5",
+        "name": "json化",
+        "property": "payload",
+        "action": "obj",
+        "pretty": false,
+        "x": 870,
+        "y": 180,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "bc2f9cc.3e1bf6",
+        "type": "change",
+        "z": "8d504cb3.b79d5",
+        "name": "取得失敗時 データ作成",
+        "rules": [
+            {
+                "t": "set",
+                "p": "error",
+                "pt": "msg",
+                "to": "{\"code\":404,\"message\":\"データ取得に失敗しました\"}",
+                "tot": "json"
+            },
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "{}",
+                "tot": "str"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 610,
+        "y": 260,
+        "wires": [
+            [
+                "adfeb1b0.aad0f"
+            ]
+        ]
+    },
+    {
+        "id": "29347bb9.e75c84",
+        "type": "debug",
+        "z": "96650511.bea1c8",
+        "name": "設定ミス告知",
+        "active": true,
+        "tosidebar": true,
+        "console": true,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 840,
+        "y": 640,
+        "wires": []
+    },
+    {
+        "id": "17ef17cd.b65b18",
+        "type": "subflow:8d504cb3.b79d5",
+        "z": "a374d263.d8244",
+        "name": "",
+        "x": 440,
+        "y": 220,
+        "wires": [
+            [
+                "3553faa.6dc8f06"
+            ],
+            [
+                "70fca98b.08d438"
+            ]
+        ]
+    },
+    {
+        "id": "2ad9dcfc.174894",
+        "type": "inject",
+        "z": "a374d263.d8244",
+        "name": "filename on",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "filename",
+                "v": "test.json",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 140,
+        "y": 240,
+        "wires": [
+            [
+                "17ef17cd.b65b18"
+            ]
+        ]
+    },
+    {
+        "id": "f8ee738b.b85de",
+        "type": "inject",
+        "z": "a374d263.d8244",
+        "name": "filename off",
+        "props": [
+            {
+                "p": "payload"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 140,
+        "y": 200,
+        "wires": [
+            [
+                "17ef17cd.b65b18"
+            ]
+        ]
+    },
+    {
+        "id": "3553faa.6dc8f06",
+        "type": "debug",
+        "z": "a374d263.d8244",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 720,
+        "y": 200,
+        "wires": []
+    },
+    {
+        "id": "70fca98b.08d438",
+        "type": "debug",
+        "z": "a374d263.d8244",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 720,
+        "y": 240,
+        "wires": []
+    },
+    {
+        "id": "fefb1b5b.c3fe08",
+        "type": "function",
+        "z": "96650511.bea1c8",
+        "name": "表示用日付 生成",
+        "func": "for(const counter in msg.payload){\n    let date_string = new Date(msg.payload[counter].delivery_date).toLocaleDateString();\n    msg.payload[counter].delivery_date_ui = date_string;\n}\n\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 140,
+        "y": 780,
+        "wires": [
+            [
+                "125fe828.6f2948"
+            ]
+        ]
+    },
+    {
+        "id": "5c67dfca.4bb26",
+        "type": "comment",
+        "z": "96650511.bea1c8",
+        "name": "売買履歴情報ログ 表示反映",
+        "info": "",
+        "x": 180,
+        "y": 740,
+        "wires": []
+    },
+    {
+        "id": "9be48a35.0376c8",
+        "type": "debug",
+        "z": "96650511.bea1c8",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 630,
+        "y": 900,
+        "wires": []
+    },
+    {
+        "id": "6d0ed7fd.c7cfd8",
+        "type": "function",
+        "z": "96650511.bea1c8",
+        "name": "メッセージ生成",
+        "func": "msg.temp = msg.payload;\n\nlet temp = msg.payload;\nmsg.payload = temp.market + \", \"\n    + temp.ticker + \", \"\n    + temp.name + \", \"\n    + temp.price + \", \"\n    + temp.share + \", \"\n    + temp.account + \", \"\n    + temp.delivery_date_ui + \", \"\n    + temp.trade + \".\";\n\nmsg.topic = \"Are you sure you want to delete?\";\n\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 480,
+        "y": 820,
+        "wires": [
+            [
+                "58540c1.9ae0ef4"
+            ]
+        ]
+    },
+    {
+        "id": "d3500df3.278b9",
+        "type": "change",
+        "z": "8d504cb3.b79d5",
+        "name": "ファイル名を設定",
+        "rules": [
+            {
+                "t": "set",
+                "p": "filename",
+                "pt": "msg",
+                "to": "FILE_NAME",
+                "tot": "env"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 590,
+        "y": 120,
+        "wires": [
+            [
+                "856facd1.b3077"
+            ]
+        ]
+    },
+    {
+        "id": "dcb5d9a2.fce818",
+        "type": "switch",
+        "z": "8d504cb3.b79d5",
+        "name": "環境変数存在チェック",
+        "property": "FILE_NAME",
+        "propertyType": "env",
+        "rules": [
+            {
+                "t": "null"
+            },
+            {
+                "t": "empty"
+            },
+            {
+                "t": "else"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 3,
+        "x": 560,
+        "y": 60,
+        "wires": [
+            [
+                "6fede1bf.f88be"
+            ],
+            [
+                "6fede1bf.f88be"
+            ],
+            [
+                "d3500df3.278b9"
+            ]
+        ]
+    },
+    {
+        "id": "77898873.4b2548",
+        "type": "change",
+        "z": "c7e7e8b2.d19e68",
+        "name": "システム情報 追加",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload.update_date",
+                "pt": "msg",
+                "to": "",
+                "tot": "date"
+            },
+            {
+                "t": "set",
+                "p": "payload.delete_flag",
+                "pt": "msg",
+                "to": "false",
+                "tot": "bool"
+            },
+            {
+                "t": "set",
+                "p": "temp",
+                "pt": "msg",
+                "to": "payload",
+                "tot": "msg"
+            },
+            {
+                "t": "delete",
+                "p": "payload",
+                "pt": "msg"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 550,
+        "y": 180,
+        "wires": [
+            [
+                "bbbea59b.4ea288"
+            ]
+        ]
+    },
+    {
+        "id": "59aa0cde.84e064",
+        "type": "switch",
+        "z": "c7e7e8b2.d19e68",
+        "name": "環境変数存在チェック",
+        "property": "FILE_NAME",
+        "propertyType": "env",
+        "rules": [
+            {
+                "t": "null"
+            },
+            {
+                "t": "empty"
+            },
+            {
+                "t": "else"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 3,
+        "x": 560,
+        "y": 60,
+        "wires": [
+            [
+                "ce021e0e.d7ec1"
+            ],
+            [
+                "ce021e0e.d7ec1"
+            ],
+            [
+                "78c7044f.c59c6c"
+            ]
+        ]
+    },
+    {
+        "id": "7b7a03e1.88aafc",
+        "type": "debug",
+        "z": "96650511.bea1c8",
+        "name": "設定ミス告知",
+        "active": true,
+        "tosidebar": true,
+        "console": true,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 1620,
+        "y": 240,
+        "wires": []
+    },
+    {
+        "id": "a7834df0.f14b9",
+        "type": "debug",
+        "z": "96650511.bea1c8",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 1590,
+        "y": 280,
+        "wires": []
+    },
+    {
+        "id": "97d2607f.5329f",
+        "type": "switch",
+        "z": "96650511.bea1c8",
+        "name": "",
+        "property": "payload",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "neq",
+                "v": "OK",
+                "vt": "str"
+            },
+            {
+                "t": "else"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 2,
+        "x": 490,
+        "y": 900,
+        "wires": [
+            [
+                "9be48a35.0376c8"
+            ],
+            [
+                "1a3470c1.40746f"
+            ]
+        ]
+    },
+    {
+        "id": "f73e87ef.0f0008",
+        "type": "comment",
+        "z": "96650511.bea1c8",
+        "name": "売買履歴情報ログ 削除オペレーション",
+        "info": "",
+        "x": 550,
+        "y": 780,
+        "wires": []
+    },
+    {
+        "id": "7c9e8f61.7fd4f",
+        "type": "subflow:8d504cb3.b79d5",
+        "z": "96650511.bea1c8",
+        "name": "売買履歴情報ログ データ取得",
+        "env": [
+            {
+                "name": "FILE_NAME",
+                "value": ".node-red/maneki-neko/trade_history.json",
+                "type": "str"
+            }
+        ],
+        "x": 850,
+        "y": 1000,
+        "wires": [
+            [
+                "a20d77dd.190088"
+            ],
+            [
+                "76459d55.830334"
+            ]
+        ]
+    },
+    {
+        "id": "a20d77dd.190088",
+        "type": "debug",
+        "z": "96650511.bea1c8",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 1130,
+        "y": 1000,
+        "wires": []
+    },
+    {
+        "id": "1a3470c1.40746f",
+        "type": "change",
+        "z": "96650511.bea1c8",
+        "name": "不要トピック 削除",
+        "rules": [
+            {
+                "t": "delete",
+                "p": "topic",
+                "pt": "msg"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 530,
+        "y": 940,
+        "wires": [
+            [
+                "7c9e8f61.7fd4f"
+            ]
+        ]
+    },
+    {
+        "id": "76459d55.830334",
+        "type": "function",
+        "z": "96650511.bea1c8",
+        "name": "指定データ 論理削除",
+        "func": "let payloads = msg.payload;\n\nlet match_flag, param;\nfor (const count in msg.payload) {\n    match_flag = true;\n    param = msg.payload[count]\n    for (const key in param) {\n        if (msg.temp[key] != param[key]) {\n            match_flag = false;\n            break;\n        }\n    }\n\n    if (match_flag) {\n        msg.payload[count][\"update_date\"] = new Date();\n        msg.payload[count][\"delete_flag\"] = true;\n    }    \n}\n\nreturn msg;\n",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 860,
+        "y": 1040,
+        "wires": [
+            [
+                "af60fc1a.3b233"
+            ]
+        ]
+    },
+    {
+        "id": "b7f71961.2a1f38",
+        "type": "debug",
+        "z": "96650511.bea1c8",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 1130,
+        "y": 1180,
+        "wires": []
+    },
+    {
+        "id": "af60fc1a.3b233",
+        "type": "change",
+        "z": "96650511.bea1c8",
+        "name": "不要パラメータ 削除",
+        "rules": [
+            {
+                "t": "delete",
+                "p": "temp",
+                "pt": "msg"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 860,
+        "y": 1120,
+        "wires": [
+            [
+                "9b52f24f.10c7f"
+            ]
+        ]
+    },
+    {
+        "id": "b2d832eb.3190d",
+        "type": "comment",
+        "z": "96650511.bea1c8",
+        "name": "売買履歴情報ログ 削除/更新",
+        "info": "",
+        "x": 840,
+        "y": 960,
+        "wires": []
+    },
+    {
+        "id": "37c14d9a.0d3232",
+        "type": "file",
+        "z": "93587e1a.756c",
+        "name": "データ 登録",
+        "filename": "",
+        "appendNewline": false,
+        "createDir": true,
+        "overwriteFile": "true",
+        "encoding": "utf8",
+        "x": 530,
+        "y": 180,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "c8637e06.7a79b",
+        "type": "change",
+        "z": "93587e1a.756c",
+        "name": "ファイル名を設定",
+        "rules": [
+            {
+                "t": "set",
+                "p": "filename",
+                "pt": "msg",
+                "to": "FILE_NAME",
+                "tot": "env"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 590,
+        "y": 120,
+        "wires": [
+            [
+                "37c14d9a.0d3232"
+            ]
+        ]
+    },
+    {
+        "id": "9c9eef1d.fa7ec",
+        "type": "switch",
+        "z": "93587e1a.756c",
+        "name": "環境変数存在チェック",
+        "property": "FILE_NAME",
+        "propertyType": "env",
+        "rules": [
+            {
+                "t": "null"
+            },
+            {
+                "t": "empty"
+            },
+            {
+                "t": "else"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 3,
+        "x": 560,
+        "y": 60,
+        "wires": [
+            [
+                "bb0d7567.5f4688"
+            ],
+            [
+                "bb0d7567.5f4688"
+            ],
+            [
+                "c8637e06.7a79b"
+            ]
+        ]
+    },
+    {
+        "id": "9b52f24f.10c7f",
+        "type": "subflow:93587e1a.756c",
+        "z": "96650511.bea1c8",
+        "name": "",
+        "env": [
+            {
+                "name": "FILE_NAME",
+                "value": ".node-red/maneki-neko/trade_history.json",
+                "type": "str"
+            }
+        ],
+        "x": 820,
+        "y": 1160,
+        "wires": [
+            [
+                "a77c05e8.9129e8"
+            ],
+            [
+                "b7f71961.2a1f38"
+            ]
+        ]
+    },
+    {
+        "id": "d26ec622.5475e8",
+        "type": "switch",
+        "z": "93587e1a.756c",
+        "name": "変数名チェック",
+        "property": "filename",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "null"
+            },
+            {
+                "t": "empty"
+            },
+            {
+                "t": "else"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 3,
+        "x": 280,
+        "y": 60,
+        "wires": [
+            [
+                "9c9eef1d.fa7ec"
+            ],
+            [
+                "9c9eef1d.fa7ec"
+            ],
+            [
+                "37c14d9a.0d3232"
+            ]
+        ]
+    },
+    {
+        "id": "71a5d70.ded4a28",
+        "type": "catch",
+        "z": "93587e1a.756c",
+        "name": "データ 取得失敗",
+        "scope": [
+            "37c14d9a.0d3232"
+        ],
+        "uncaught": false,
+        "x": 540,
+        "y": 220,
+        "wires": [
+            [
+                "e1004631.d3bca8"
+            ]
+        ]
+    },
+    {
+        "id": "a77c05e8.9129e8",
+        "type": "debug",
+        "z": "96650511.bea1c8",
+        "name": "設定ミス告知",
+        "active": true,
+        "tosidebar": true,
+        "console": true,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 1160,
+        "y": 1140,
+        "wires": []
+    },
+    {
+        "id": "7216f92f.e20cb8",
+        "type": "switch",
+        "z": "8d504cb3.b79d5",
+        "name": "変数名チェック",
+        "property": "filename",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "null"
+            },
+            {
+                "t": "empty"
+            },
+            {
+                "t": "else"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 3,
+        "x": 280,
+        "y": 60,
+        "wires": [
+            [
+                "dcb5d9a2.fce818"
+            ],
+            [
+                "dcb5d9a2.fce818"
+            ],
+            [
+                "856facd1.b3077"
+            ]
+        ]
+    },
+    {
+        "id": "6fede1bf.f88be",
+        "type": "change",
+        "z": "8d504cb3.b79d5",
+        "name": "エラー生成(ファイル名)",
+        "rules": [
+            {
+                "t": "set",
+                "p": "error",
+                "pt": "msg",
+                "to": "{\"code\":404,\"message\":\"ファイル名が設定されていません\"}",
+                "tot": "json"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 930,
+        "y": 60,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "bb0d7567.5f4688",
+        "type": "change",
+        "z": "93587e1a.756c",
+        "name": "エラー生成(ファイル名)",
+        "rules": [
+            {
+                "t": "set",
+                "p": "error",
+                "pt": "msg",
+                "to": "{\"code\":404,\"message\":\"ファイル名が設定されていません\"}",
+                "tot": "json"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 930,
+        "y": 60,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "e1004631.d3bca8",
+        "type": "change",
+        "z": "93587e1a.756c",
+        "name": "取得失敗時 データ作成",
+        "rules": [
+            {
+                "t": "set",
+                "p": "error",
+                "pt": "msg",
+                "to": "{\"code\":404,\"message\":\"データ登録に失敗しました\"}",
+                "tot": "json"
+            },
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "{}",
+                "tot": "str"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 610,
+        "y": 260,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "69004b94.2e1b94",
+        "type": "switch",
+        "z": "c7e7e8b2.d19e68",
+        "name": "変数名チェック",
+        "property": "filename",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "null"
+            },
+            {
+                "t": "empty"
+            },
+            {
+                "t": "else"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 3,
+        "x": 280,
+        "y": 60,
+        "wires": [
+            [
+                "59aa0cde.84e064"
+            ],
+            [
+                "59aa0cde.84e064"
+            ],
+            [
+                "77898873.4b2548"
+            ]
+        ]
+    },
+    {
+        "id": "78c7044f.c59c6c",
+        "type": "change",
+        "z": "c7e7e8b2.d19e68",
+        "name": "ファイル名を設定",
+        "rules": [
+            {
+                "t": "set",
+                "p": "filename",
+                "pt": "msg",
+                "to": "FILE_NAME",
+                "tot": "env"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 590,
+        "y": 120,
+        "wires": [
+            [
+                "77898873.4b2548"
+            ]
+        ]
+    },
+    {
+        "id": "ce021e0e.d7ec1",
+        "type": "change",
+        "z": "c7e7e8b2.d19e68",
+        "name": "エラー生成(ファイル名)",
+        "rules": [
+            {
+                "t": "set",
+                "p": "error",
+                "pt": "msg",
+                "to": "{\"code\":404,\"message\":\"ファイル名が設定されていません\"}",
+                "tot": "json"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 890,
+        "y": 60,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "87e9b426.05b548",
+        "type": "ui_text_input",
+        "z": "96650511.bea1c8",
+        "name": "ティッカー",
+        "label": "Ticker",
+        "tooltip": "",
+        "group": "fa70cfdf.23743",
+        "order": 2,
+        "width": 0,
+        "height": 0,
+        "passthru": false,
+        "mode": "text",
+        "delay": "200",
+        "topic": "ticker",
+        "topicType": "str",
+        "x": 430,
+        "y": 140,
+        "wires": [
+            [
+                "73ec9d3.3ff7864"
+            ]
+        ]
+    },
+    {
+        "id": "71f7aceb.07eea4",
+        "type": "ui_text_input",
+        "z": "96650511.bea1c8",
+        "name": "銘柄名",
+        "label": "Name",
+        "tooltip": "",
+        "group": "fa70cfdf.23743",
+        "order": 3,
+        "width": 0,
+        "height": 0,
+        "passthru": false,
+        "mode": "text",
+        "delay": "200",
+        "topic": "name",
+        "topicType": "str",
+        "x": 410,
+        "y": 180,
+        "wires": [
+            [
+                "73ec9d3.3ff7864"
+            ]
+        ]
+    },
+    {
+        "id": "206c30d9.4e56f",
+        "type": "ui_text_input",
+        "z": "96650511.bea1c8",
+        "name": "単価",
+        "label": "Price",
+        "tooltip": "",
+        "group": "fa70cfdf.23743",
+        "order": 4,
+        "width": 0,
+        "height": 0,
+        "passthru": false,
+        "mode": "text",
+        "delay": "200",
+        "topic": "price",
+        "topicType": "str",
+        "x": 410,
+        "y": 220,
+        "wires": [
+            [
+                "73ec9d3.3ff7864"
+            ]
+        ]
+    },
+    {
+        "id": "5db46167.bf9e9",
+        "type": "ui_text_input",
+        "z": "96650511.bea1c8",
+        "name": "株数",
+        "label": "Share",
+        "tooltip": "",
+        "group": "fa70cfdf.23743",
+        "order": 4,
+        "width": 0,
+        "height": 0,
+        "passthru": false,
+        "mode": "text",
+        "delay": "200",
+        "topic": "share",
+        "topicType": "str",
+        "x": 410,
+        "y": 260,
+        "wires": [
+            [
+                "73ec9d3.3ff7864"
+            ]
+        ]
+    },
+    {
+        "id": "f2ba4197.443b8",
+        "type": "ui_date_picker",
+        "z": "96650511.bea1c8",
+        "name": "受渡日",
+        "label": "Delivery Date",
+        "group": "fa70cfdf.23743",
+        "order": 7,
+        "width": 0,
+        "height": 0,
+        "passthru": false,
+        "topic": "delivery_date",
+        "topicType": "str",
+        "x": 410,
+        "y": 340,
+        "wires": [
+            [
+                "73ec9d3.3ff7864"
+            ]
+        ]
+    },
+    {
+        "id": "f7785e7b.1538c",
+        "type": "ui_button",
+        "z": "96650511.bea1c8",
+        "name": "買い",
+        "group": "fa70cfdf.23743",
+        "order": 8,
+        "width": "2",
+        "height": "1",
+        "passthru": false,
+        "label": "Buy",
+        "tooltip": "",
+        "color": "",
+        "bgcolor": "",
+        "icon": "",
+        "payload": "buy",
+        "payloadType": "str",
+        "topic": "trade",
+        "topicType": "str",
+        "x": 410,
+        "y": 400,
+        "wires": [
+            [
+                "73ec9d3.3ff7864"
+            ]
+        ]
+    },
+    {
+        "id": "7d6fcd9.e492534",
+        "type": "ui_button",
+        "z": "96650511.bea1c8",
+        "name": "売り",
+        "group": "fa70cfdf.23743",
+        "order": 9,
+        "width": "2",
+        "height": "1",
+        "passthru": false,
+        "label": "Sell",
+        "tooltip": "",
+        "color": "",
+        "bgcolor": "",
+        "icon": "",
+        "payload": "sell",
+        "payloadType": "str",
+        "topic": "trade",
+        "topicType": "str",
+        "x": 410,
+        "y": 440,
+        "wires": [
+            [
+                "73ec9d3.3ff7864"
+            ]
+        ]
+    },
+    {
+        "id": "8e7286f1.b7b4d8",
+        "type": "ui_button",
+        "z": "96650511.bea1c8",
+        "name": "キャンセル",
+        "group": "fa70cfdf.23743",
+        "order": 9,
+        "width": "2",
+        "height": "1",
+        "passthru": true,
+        "label": "Cancel",
+        "tooltip": "",
+        "color": "",
+        "bgcolor": "#aaaaaa",
+        "icon": "",
+        "payload": "cancel",
+        "payloadType": "str",
+        "topic": "clear",
+        "topicType": "str",
+        "x": 670,
+        "y": 240,
+        "wires": [
+            [
+                "5700cf6a.5dcfb"
+            ]
+        ]
+    },
+    {
+        "id": "c066b261.875f2",
+        "type": "ui_dropdown",
+        "z": "96650511.bea1c8",
+        "name": "市場",
+        "label": "Market",
+        "tooltip": "",
+        "place": "Select option",
+        "group": "fa70cfdf.23743",
+        "order": 1,
+        "width": 0,
+        "height": 0,
+        "passthru": false,
+        "multiple": false,
+        "options": [
+            {
+                "label": "NYSE",
+                "value": "nyse",
+                "type": "str"
+            },
+            {
+                "label": "NASDAQ",
+                "value": "nasdaq",
+                "type": "str"
+            },
+            {
+                "label": "JPX",
+                "value": "jpx",
+                "type": "str"
+            }
+        ],
+        "payload": "",
+        "topic": "market",
+        "topicType": "str",
+        "x": 410,
+        "y": 100,
+        "wires": [
+            [
+                "73ec9d3.3ff7864"
+            ]
+        ]
+    },
+    {
+        "id": "206ffff4.e09cd",
+        "type": "ui_dropdown",
+        "z": "96650511.bea1c8",
+        "name": "口座",
+        "label": "Account",
+        "tooltip": "",
+        "place": "Select option",
+        "group": "fa70cfdf.23743",
+        "order": 5,
+        "width": 0,
+        "height": 0,
+        "passthru": false,
+        "multiple": false,
+        "options": [
+            {
+                "label": "General",
+                "value": "general",
+                "type": "str"
+            },
+            {
+                "label": "Specified",
+                "value": "specified",
+                "type": "str"
+            },
+            {
+                "label": "NISA",
+                "value": "nisa",
+                "type": "str"
+            }
+        ],
+        "payload": "",
+        "topic": "account",
+        "topicType": "str",
+        "x": 410,
+        "y": 300,
+        "wires": [
+            [
+                "73ec9d3.3ff7864"
+            ]
+        ]
+    },
+    {
+        "id": "58540c1.9ae0ef4",
+        "type": "ui_toast",
+        "z": "96650511.bea1c8",
+        "position": "dialog",
+        "displayTime": "3",
+        "highlight": "",
+        "sendall": true,
+        "outputs": 1,
+        "ok": "OK",
+        "cancel": "Cancel",
+        "raw": false,
+        "topic": "",
+        "name": "",
+        "x": 510,
+        "y": 860,
+        "wires": [
+            [
+                "97d2607f.5329f"
+            ]
+        ]
+    },
+    {
+        "id": "125fe828.6f2948",
+        "type": "ui_template",
+        "z": "96650511.bea1c8",
+        "group": "c4cbeafa.163d58",
+        "name": "売買履歴情報ログ",
+        "order": 1,
+        "width": 0,
+        "height": 0,
+        "format": "<table border=1>\n    <tr>\n        <th ng-hide=\"true\">Market</th>\n        <th>Ticker</th>\n        <th>Name</th>\n        <th>Price</th>\n        <th>Share</th>\n        <th>Account</th>\n        <th>Delivery date</th>\n        <th ng-hide=\"true\">Delivery date(raw)</th>\n        <th>Trade</th>\n        <th ng-hide=\"true\">Update date</th>\n        <th>Control</th>\n    </tr>\n    <tr ng-repeat=\"payload in msg.payload\" ng-hide=\"payload.delete_flag\">\n        <td ng-hide=\"true\">{{ payload.market }}</td>\n        <td>{{ payload.ticker }}</td>\n        <td>{{ payload.name }}</td>\n        <td>{{ payload.price }}</td>\n        <td>{{ payload.share }}</td>\n        <td>{{ payload.account }}</td>\n        <td>{{ payload.delivery_date_ui }}</td>\n        <td ng-hide=\"true\">{{ payload.delivery_date }}</td>\n        <td>{{ payload.trade }}</td>\n        <td ng-hide=\"true\">{{ payload.update_date }}</td>\n        <td>\n            <md-button tr ng-click=\"send([{payload}])\">Del\n            </md-button>\n        </td>\n    </tr>\n</table>",
+        "storeOutMessages": false,
+        "fwdInMessages": false,
+        "resendOnRefresh": false,
+        "templateScope": "local",
+        "x": 190,
+        "y": 820,
+        "wires": [
+            [
+                "7eb87141.3b1d7",
+                "6d0ed7fd.c7cfd8"
+            ]
         ]
     }
 ]
