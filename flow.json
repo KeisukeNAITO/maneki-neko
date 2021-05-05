@@ -171,12 +171,41 @@
         "icon": "font-awesome/fa-hdd-o"
     },
     {
+        "id": "22bc5b3f.8ee744",
+        "type": "ui_tab",
+        "name": "TRADING HISTORY",
+        "icon": "dashboard",
+        "order": 1,
+        "disabled": false,
+        "hidden": false
+    },
+    {
         "id": "7a150446.5eb45c",
         "type": "ui_group",
         "name": "デフォルト",
         "tab": "",
         "disp": true,
         "width": "6",
+        "collapse": false
+    },
+    {
+        "id": "fa70cfdf.23743",
+        "type": "ui_group",
+        "name": "REGISTRATION",
+        "tab": "22bc5b3f.8ee744",
+        "order": 1,
+        "disp": true,
+        "width": "6",
+        "collapse": false
+    },
+    {
+        "id": "c4cbeafa.163d58",
+        "type": "ui_group",
+        "name": "LOG",
+        "tab": "22bc5b3f.8ee744",
+        "order": 2,
+        "disp": true,
+        "width": "12",
         "collapse": false
     },
     {
@@ -277,35 +306,6 @@
         }
     },
     {
-        "id": "22bc5b3f.8ee744",
-        "type": "ui_tab",
-        "name": "TRADING HISTORY",
-        "icon": "dashboard",
-        "order": 1,
-        "disabled": false,
-        "hidden": false
-    },
-    {
-        "id": "fa70cfdf.23743",
-        "type": "ui_group",
-        "name": "REGISTRATION",
-        "tab": "22bc5b3f.8ee744",
-        "order": 1,
-        "disp": true,
-        "width": "6",
-        "collapse": false
-    },
-    {
-        "id": "c4cbeafa.163d58",
-        "type": "ui_group",
-        "name": "LOG",
-        "tab": "22bc5b3f.8ee744",
-        "order": 2,
-        "disp": true,
-        "width": "12",
-        "collapse": false
-    },
-    {
         "id": "daee0b7e.4b9b18",
         "type": "function",
         "z": "a374d263.d8244",
@@ -391,237 +391,6 @@
         ]
     },
     {
-        "id": "f7785e7b.1538c",
-        "type": "ui_button",
-        "z": "96650511.bea1c8",
-        "name": "買い",
-        "group": "fa70cfdf.23743",
-        "order": 8,
-        "width": "2",
-        "height": "1",
-        "passthru": false,
-        "label": "Buy",
-        "tooltip": "",
-        "color": "",
-        "bgcolor": "",
-        "icon": "",
-        "payload": "buy",
-        "payloadType": "str",
-        "topic": "trade",
-        "topicType": "str",
-        "x": 410,
-        "y": 400,
-        "wires": [
-            [
-                "73ec9d3.3ff7864"
-            ]
-        ]
-    },
-    {
-        "id": "7d6fcd9.e492534",
-        "type": "ui_button",
-        "z": "96650511.bea1c8",
-        "name": "売り",
-        "group": "fa70cfdf.23743",
-        "order": 9,
-        "width": "2",
-        "height": "1",
-        "passthru": false,
-        "label": "Sell",
-        "tooltip": "",
-        "color": "",
-        "bgcolor": "",
-        "icon": "",
-        "payload": "sell",
-        "payloadType": "str",
-        "topic": "trade",
-        "topicType": "str",
-        "x": 410,
-        "y": 440,
-        "wires": [
-            [
-                "73ec9d3.3ff7864"
-            ]
-        ]
-    },
-    {
-        "id": "c066b261.875f2",
-        "type": "ui_dropdown",
-        "z": "96650511.bea1c8",
-        "name": "市場",
-        "label": "Market",
-        "tooltip": "",
-        "place": "Select option",
-        "group": "fa70cfdf.23743",
-        "order": 1,
-        "width": 0,
-        "height": 0,
-        "passthru": false,
-        "multiple": false,
-        "options": [
-            {
-                "label": "NYSE",
-                "value": "nyse",
-                "type": "str"
-            },
-            {
-                "label": "NASDAQ",
-                "value": "nasdaq",
-                "type": "str"
-            },
-            {
-                "label": "JPX",
-                "value": "tko",
-                "type": "str"
-            }
-        ],
-        "payload": "",
-        "topic": "market",
-        "topicType": "str",
-        "x": 410,
-        "y": 100,
-        "wires": [
-            [
-                "73ec9d3.3ff7864"
-            ]
-        ]
-    },
-    {
-        "id": "87e9b426.05b548",
-        "type": "ui_text_input",
-        "z": "96650511.bea1c8",
-        "name": "ティッカー",
-        "label": "Ticker",
-        "tooltip": "",
-        "group": "fa70cfdf.23743",
-        "order": 2,
-        "width": 0,
-        "height": 0,
-        "passthru": false,
-        "mode": "text",
-        "delay": "200",
-        "topic": "ticker",
-        "topicType": "str",
-        "x": 430,
-        "y": 140,
-        "wires": [
-            [
-                "73ec9d3.3ff7864"
-            ]
-        ]
-    },
-    {
-        "id": "71f7aceb.07eea4",
-        "type": "ui_text_input",
-        "z": "96650511.bea1c8",
-        "name": "銘柄名",
-        "label": "Name",
-        "tooltip": "",
-        "group": "fa70cfdf.23743",
-        "order": 3,
-        "width": 0,
-        "height": 0,
-        "passthru": false,
-        "mode": "text",
-        "delay": "200",
-        "topic": "name",
-        "topicType": "str",
-        "x": 410,
-        "y": 180,
-        "wires": [
-            [
-                "73ec9d3.3ff7864"
-            ]
-        ]
-    },
-    {
-        "id": "206c30d9.4e56f",
-        "type": "ui_text_input",
-        "z": "96650511.bea1c8",
-        "name": "単価",
-        "label": "Price",
-        "tooltip": "",
-        "group": "fa70cfdf.23743",
-        "order": 4,
-        "width": 0,
-        "height": 0,
-        "passthru": false,
-        "mode": "text",
-        "delay": "200",
-        "topic": "price",
-        "topicType": "str",
-        "x": 410,
-        "y": 220,
-        "wires": [
-            [
-                "73ec9d3.3ff7864"
-            ]
-        ]
-    },
-    {
-        "id": "f2ba4197.443b8",
-        "type": "ui_date_picker",
-        "z": "96650511.bea1c8",
-        "name": "受渡日",
-        "label": "Delivery Date",
-        "group": "fa70cfdf.23743",
-        "order": 7,
-        "width": 0,
-        "height": 0,
-        "passthru": false,
-        "topic": "delivery_date",
-        "topicType": "str",
-        "x": 410,
-        "y": 340,
-        "wires": [
-            [
-                "73ec9d3.3ff7864"
-            ]
-        ]
-    },
-    {
-        "id": "206ffff4.e09cd",
-        "type": "ui_dropdown",
-        "z": "96650511.bea1c8",
-        "name": "口座",
-        "label": "Account",
-        "tooltip": "",
-        "place": "Select option",
-        "group": "fa70cfdf.23743",
-        "order": 5,
-        "width": 0,
-        "height": 0,
-        "passthru": false,
-        "multiple": false,
-        "options": [
-            {
-                "label": "一般口座",
-                "value": "general",
-                "type": "str"
-            },
-            {
-                "label": "特定口座",
-                "value": "specified",
-                "type": "str"
-            },
-            {
-                "label": "NISA口座",
-                "value": "nisa",
-                "type": "str"
-            }
-        ],
-        "payload": "",
-        "topic": "account",
-        "topicType": "str",
-        "x": 410,
-        "y": 300,
-        "wires": [
-            [
-                "73ec9d3.3ff7864"
-            ]
-        ]
-    },
-    {
         "id": "73ec9d3.3ff7864",
         "type": "switch",
         "z": "96650511.bea1c8",
@@ -704,7 +473,7 @@
                 "3d6cf9ef.5732d6"
             ],
             [
-                "95822acf.54d728"
+                "bec5d67e.05d9a8"
             ]
         ]
     },
@@ -794,30 +563,6 @@
             [
                 "f7785e7b.1538c",
                 "7d6fcd9.e492534"
-            ]
-        ]
-    },
-    {
-        "id": "5db46167.bf9e9",
-        "type": "ui_text_input",
-        "z": "96650511.bea1c8",
-        "name": "株数",
-        "label": "Share",
-        "tooltip": "",
-        "group": "fa70cfdf.23743",
-        "order": 4,
-        "width": 0,
-        "height": 0,
-        "passthru": false,
-        "mode": "text",
-        "delay": "200",
-        "topic": "share",
-        "topicType": "str",
-        "x": 410,
-        "y": 260,
-        "wires": [
-            [
-                "73ec9d3.3ff7864"
             ]
         ]
     },
@@ -983,33 +728,6 @@
         "wires": []
     },
     {
-        "id": "8e7286f1.b7b4d8",
-        "type": "ui_button",
-        "z": "96650511.bea1c8",
-        "name": "キャンセル",
-        "group": "fa70cfdf.23743",
-        "order": 9,
-        "width": "2",
-        "height": "1",
-        "passthru": true,
-        "label": "Cancel",
-        "tooltip": "",
-        "color": "",
-        "bgcolor": "#aaaaaa",
-        "icon": "",
-        "payload": "cancel",
-        "payloadType": "str",
-        "topic": "clear",
-        "topicType": "str",
-        "x": 670,
-        "y": 240,
-        "wires": [
-            [
-                "5700cf6a.5dcfb"
-            ]
-        ]
-    },
-    {
         "id": "26ab2f25.abd4e",
         "type": "inject",
         "z": "96650511.bea1c8",
@@ -1059,55 +777,17 @@
         "id": "bec5d67e.05d9a8",
         "type": "debug",
         "z": "96650511.bea1c8",
-        "name": "",
-        "active": false,
+        "name": "不明なトピック",
+        "active": true,
         "tosidebar": true,
-        "console": false,
+        "console": true,
         "tostatus": false,
         "complete": "true",
         "targetType": "full",
         "statusVal": "",
         "statusType": "auto",
         "x": 970,
-        "y": 420,
-        "wires": []
-    },
-    {
-        "id": "95822acf.54d728",
-        "type": "template",
-        "z": "96650511.bea1c8",
-        "name": "不明なトピックメッセージ",
-        "field": "payload",
-        "fieldType": "msg",
-        "format": "handlebars",
-        "syntax": "mustache",
-        "template": "unknown topic: \"{{topic}}\" !",
-        "output": "str",
-        "x": 1000,
         "y": 380,
-        "wires": [
-            [
-                "bec5d67e.05d9a8",
-                "85d5c4b6.dc3108"
-            ]
-        ]
-    },
-    {
-        "id": "85d5c4b6.dc3108",
-        "type": "ui_toast",
-        "z": "96650511.bea1c8",
-        "position": "top right",
-        "displayTime": "3",
-        "highlight": "",
-        "sendall": true,
-        "outputs": 0,
-        "ok": "OK",
-        "cancel": "",
-        "raw": false,
-        "topic": "Unknown topic",
-        "name": "トースト",
-        "x": 1160,
-        "y": 420,
         "wires": []
     },
     {
@@ -1396,29 +1076,6 @@
         "x": 140,
         "y": 540,
         "wires": []
-    },
-    {
-        "id": "125fe828.6f2948",
-        "type": "ui_template",
-        "z": "96650511.bea1c8",
-        "group": "c4cbeafa.163d58",
-        "name": "売買履歴情報ログ",
-        "order": 1,
-        "width": 0,
-        "height": 0,
-        "format": "<table border=1>\n    <tr>\n        <th ng-hide=\"true\">Market</th>\n        <th>Ticker</th>\n        <th>Name</th>\n        <th>Price</th>\n        <th>Share</th>\n        <th>Account</th>\n        <th>Delivery date</th>\n        <th ng-hide=\"true\">Delivery date(raw)</th>\n        <th>Trade</th>\n        <th ng-hide=\"true\">Update date</th>\n        <th>Control</th>\n    </tr>\n    <tr ng-repeat=\"payload in msg.payload\" ng-hide=\"payload.delete_flag\">\n        <td ng-hide=\"true\">{{ payload.market }}</td>\n        <td>{{ payload.ticker }}</td>\n        <td>{{ payload.name }}</td>\n        <td>{{ payload.price }}</td>\n        <td>{{ payload.share }}</td>\n        <td>{{ payload.account }}</td>\n        <td>{{ payload.delivery_date_ui }}</td>\n        <td ng-hide=\"true\">{{ payload.delivery_date }}</td>\n        <td>{{ payload.trade }}</td>\n        <td ng-hide=\"true\">{{ payload.update_date }}</td>\n        <td>\n            <md-button tr ng-click=\"send([{payload}])\">Del\n            </md-button>\n        </td>\n    </tr>\n</table>",
-        "storeOutMessages": false,
-        "fwdInMessages": false,
-        "resendOnRefresh": false,
-        "templateScope": "local",
-        "x": 190,
-        "y": 820,
-        "wires": [
-            [
-                "7eb87141.3b1d7",
-                "6d0ed7fd.c7cfd8"
-            ]
-        ]
     },
     {
         "id": "e5c7278c.dc4698",
@@ -1750,28 +1407,6 @@
         "x": 180,
         "y": 740,
         "wires": []
-    },
-    {
-        "id": "58540c1.9ae0ef4",
-        "type": "ui_toast",
-        "z": "96650511.bea1c8",
-        "position": "dialog",
-        "displayTime": "3",
-        "highlight": "",
-        "sendall": true,
-        "outputs": 1,
-        "ok": "OK",
-        "cancel": "Cancel",
-        "raw": false,
-        "topic": "",
-        "name": "",
-        "x": 510,
-        "y": 860,
-        "wires": [
-            [
-                "97d2607f.5329f"
-            ]
-        ]
     },
     {
         "id": "9be48a35.0376c8",
@@ -2535,6 +2170,333 @@
         "y": 60,
         "wires": [
             []
+        ]
+    },
+    {
+        "id": "87e9b426.05b548",
+        "type": "ui_text_input",
+        "z": "96650511.bea1c8",
+        "name": "ティッカー",
+        "label": "Ticker",
+        "tooltip": "",
+        "group": "fa70cfdf.23743",
+        "order": 2,
+        "width": 0,
+        "height": 0,
+        "passthru": false,
+        "mode": "text",
+        "delay": "200",
+        "topic": "ticker",
+        "topicType": "str",
+        "x": 430,
+        "y": 140,
+        "wires": [
+            [
+                "73ec9d3.3ff7864"
+            ]
+        ]
+    },
+    {
+        "id": "71f7aceb.07eea4",
+        "type": "ui_text_input",
+        "z": "96650511.bea1c8",
+        "name": "銘柄名",
+        "label": "Name",
+        "tooltip": "",
+        "group": "fa70cfdf.23743",
+        "order": 3,
+        "width": 0,
+        "height": 0,
+        "passthru": false,
+        "mode": "text",
+        "delay": "200",
+        "topic": "name",
+        "topicType": "str",
+        "x": 410,
+        "y": 180,
+        "wires": [
+            [
+                "73ec9d3.3ff7864"
+            ]
+        ]
+    },
+    {
+        "id": "206c30d9.4e56f",
+        "type": "ui_text_input",
+        "z": "96650511.bea1c8",
+        "name": "単価",
+        "label": "Price",
+        "tooltip": "",
+        "group": "fa70cfdf.23743",
+        "order": 4,
+        "width": 0,
+        "height": 0,
+        "passthru": false,
+        "mode": "text",
+        "delay": "200",
+        "topic": "price",
+        "topicType": "str",
+        "x": 410,
+        "y": 220,
+        "wires": [
+            [
+                "73ec9d3.3ff7864"
+            ]
+        ]
+    },
+    {
+        "id": "5db46167.bf9e9",
+        "type": "ui_text_input",
+        "z": "96650511.bea1c8",
+        "name": "株数",
+        "label": "Share",
+        "tooltip": "",
+        "group": "fa70cfdf.23743",
+        "order": 4,
+        "width": 0,
+        "height": 0,
+        "passthru": false,
+        "mode": "text",
+        "delay": "200",
+        "topic": "share",
+        "topicType": "str",
+        "x": 410,
+        "y": 260,
+        "wires": [
+            [
+                "73ec9d3.3ff7864"
+            ]
+        ]
+    },
+    {
+        "id": "f2ba4197.443b8",
+        "type": "ui_date_picker",
+        "z": "96650511.bea1c8",
+        "name": "受渡日",
+        "label": "Delivery Date",
+        "group": "fa70cfdf.23743",
+        "order": 7,
+        "width": 0,
+        "height": 0,
+        "passthru": false,
+        "topic": "delivery_date",
+        "topicType": "str",
+        "x": 410,
+        "y": 340,
+        "wires": [
+            [
+                "73ec9d3.3ff7864"
+            ]
+        ]
+    },
+    {
+        "id": "f7785e7b.1538c",
+        "type": "ui_button",
+        "z": "96650511.bea1c8",
+        "name": "買い",
+        "group": "fa70cfdf.23743",
+        "order": 8,
+        "width": "2",
+        "height": "1",
+        "passthru": false,
+        "label": "Buy",
+        "tooltip": "",
+        "color": "",
+        "bgcolor": "",
+        "icon": "",
+        "payload": "buy",
+        "payloadType": "str",
+        "topic": "trade",
+        "topicType": "str",
+        "x": 410,
+        "y": 400,
+        "wires": [
+            [
+                "73ec9d3.3ff7864"
+            ]
+        ]
+    },
+    {
+        "id": "7d6fcd9.e492534",
+        "type": "ui_button",
+        "z": "96650511.bea1c8",
+        "name": "売り",
+        "group": "fa70cfdf.23743",
+        "order": 9,
+        "width": "2",
+        "height": "1",
+        "passthru": false,
+        "label": "Sell",
+        "tooltip": "",
+        "color": "",
+        "bgcolor": "",
+        "icon": "",
+        "payload": "sell",
+        "payloadType": "str",
+        "topic": "trade",
+        "topicType": "str",
+        "x": 410,
+        "y": 440,
+        "wires": [
+            [
+                "73ec9d3.3ff7864"
+            ]
+        ]
+    },
+    {
+        "id": "8e7286f1.b7b4d8",
+        "type": "ui_button",
+        "z": "96650511.bea1c8",
+        "name": "キャンセル",
+        "group": "fa70cfdf.23743",
+        "order": 9,
+        "width": "2",
+        "height": "1",
+        "passthru": true,
+        "label": "Cancel",
+        "tooltip": "",
+        "color": "",
+        "bgcolor": "#aaaaaa",
+        "icon": "",
+        "payload": "cancel",
+        "payloadType": "str",
+        "topic": "clear",
+        "topicType": "str",
+        "x": 670,
+        "y": 240,
+        "wires": [
+            [
+                "5700cf6a.5dcfb"
+            ]
+        ]
+    },
+    {
+        "id": "c066b261.875f2",
+        "type": "ui_dropdown",
+        "z": "96650511.bea1c8",
+        "name": "市場",
+        "label": "Market",
+        "tooltip": "",
+        "place": "Select option",
+        "group": "fa70cfdf.23743",
+        "order": 1,
+        "width": 0,
+        "height": 0,
+        "passthru": false,
+        "multiple": false,
+        "options": [
+            {
+                "label": "NYSE",
+                "value": "nyse",
+                "type": "str"
+            },
+            {
+                "label": "NASDAQ",
+                "value": "nasdaq",
+                "type": "str"
+            },
+            {
+                "label": "JPX",
+                "value": "jpx",
+                "type": "str"
+            }
+        ],
+        "payload": "",
+        "topic": "market",
+        "topicType": "str",
+        "x": 410,
+        "y": 100,
+        "wires": [
+            [
+                "73ec9d3.3ff7864"
+            ]
+        ]
+    },
+    {
+        "id": "206ffff4.e09cd",
+        "type": "ui_dropdown",
+        "z": "96650511.bea1c8",
+        "name": "口座",
+        "label": "Account",
+        "tooltip": "",
+        "place": "Select option",
+        "group": "fa70cfdf.23743",
+        "order": 5,
+        "width": 0,
+        "height": 0,
+        "passthru": false,
+        "multiple": false,
+        "options": [
+            {
+                "label": "General",
+                "value": "general",
+                "type": "str"
+            },
+            {
+                "label": "Specified",
+                "value": "specified",
+                "type": "str"
+            },
+            {
+                "label": "NISA",
+                "value": "nisa",
+                "type": "str"
+            }
+        ],
+        "payload": "",
+        "topic": "account",
+        "topicType": "str",
+        "x": 410,
+        "y": 300,
+        "wires": [
+            [
+                "73ec9d3.3ff7864"
+            ]
+        ]
+    },
+    {
+        "id": "58540c1.9ae0ef4",
+        "type": "ui_toast",
+        "z": "96650511.bea1c8",
+        "position": "dialog",
+        "displayTime": "3",
+        "highlight": "",
+        "sendall": true,
+        "outputs": 1,
+        "ok": "OK",
+        "cancel": "Cancel",
+        "raw": false,
+        "topic": "",
+        "name": "",
+        "x": 510,
+        "y": 860,
+        "wires": [
+            [
+                "97d2607f.5329f"
+            ]
+        ]
+    },
+    {
+        "id": "125fe828.6f2948",
+        "type": "ui_template",
+        "z": "96650511.bea1c8",
+        "group": "c4cbeafa.163d58",
+        "name": "売買履歴情報ログ",
+        "order": 1,
+        "width": 0,
+        "height": 0,
+        "format": "<table border=1>\n    <tr>\n        <th ng-hide=\"true\">Market</th>\n        <th>Ticker</th>\n        <th>Name</th>\n        <th>Price</th>\n        <th>Share</th>\n        <th>Account</th>\n        <th>Delivery date</th>\n        <th ng-hide=\"true\">Delivery date(raw)</th>\n        <th>Trade</th>\n        <th ng-hide=\"true\">Update date</th>\n        <th>Control</th>\n    </tr>\n    <tr ng-repeat=\"payload in msg.payload\" ng-hide=\"payload.delete_flag\">\n        <td ng-hide=\"true\">{{ payload.market }}</td>\n        <td>{{ payload.ticker }}</td>\n        <td>{{ payload.name }}</td>\n        <td>{{ payload.price }}</td>\n        <td>{{ payload.share }}</td>\n        <td>{{ payload.account }}</td>\n        <td>{{ payload.delivery_date_ui }}</td>\n        <td ng-hide=\"true\">{{ payload.delivery_date }}</td>\n        <td>{{ payload.trade }}</td>\n        <td ng-hide=\"true\">{{ payload.update_date }}</td>\n        <td>\n            <md-button tr ng-click=\"send([{payload}])\">Del\n            </md-button>\n        </td>\n    </tr>\n</table>",
+        "storeOutMessages": false,
+        "fwdInMessages": false,
+        "resendOnRefresh": false,
+        "templateScope": "local",
+        "x": 190,
+        "y": 820,
+        "wires": [
+            [
+                "7eb87141.3b1d7",
+                "6d0ed7fd.c7cfd8"
+            ]
         ]
     }
 ]
