@@ -7,6 +7,13 @@
         "info": ""
     },
     {
+        "id": "ba4aa062.76011",
+        "type": "tab",
+        "label": "ポートフォリオ コレクタ",
+        "disabled": false,
+        "info": ""
+    },
+    {
         "id": "a374d263.d8244",
         "type": "tab",
         "label": "永続化マネージャ",
@@ -173,9 +180,9 @@
     {
         "id": "22bc5b3f.8ee744",
         "type": "ui_tab",
-        "name": "TRADING HISTORY",
+        "name": "TRADING",
         "icon": "dashboard",
-        "order": 1,
+        "order": 2,
         "disabled": false,
         "hidden": false
     },
@@ -201,7 +208,7 @@
     {
         "id": "c4cbeafa.163d58",
         "type": "ui_group",
-        "name": "LOG",
+        "name": "HISTORY",
         "tab": "22bc5b3f.8ee744",
         "order": 2,
         "disp": true,
@@ -304,6 +311,25 @@
                 "py": 0
             }
         }
+    },
+    {
+        "id": "439741d2.8e1f",
+        "type": "ui_tab",
+        "name": "PORTFOLIO",
+        "icon": "dashboard",
+        "order": 1,
+        "disabled": false,
+        "hidden": false
+    },
+    {
+        "id": "4a32f7f6.0173f8",
+        "type": "ui_group",
+        "name": "PORTFOLIO LIST",
+        "tab": "439741d2.8e1f",
+        "order": 1,
+        "disp": true,
+        "width": "12",
+        "collapse": false
     },
     {
         "id": "daee0b7e.4b9b18",
@@ -570,7 +596,7 @@
         "id": "5593bffa.3d79f",
         "type": "link in",
         "z": "96650511.bea1c8",
-        "name": "至 一時保存",
+        "name": "至 表示更新",
         "links": [
             "1f54da03.f1dc16"
         ],
@@ -586,7 +612,7 @@
         "id": "1f54da03.f1dc16",
         "type": "link out",
         "z": "96650511.bea1c8",
-        "name": "自 表示更新",
+        "name": "自 一時保存",
         "links": [
             "5593bffa.3d79f"
         ],
@@ -1087,7 +1113,7 @@
                 "p": "payload"
             }
         ],
-        "repeat": "1",
+        "repeat": "",
         "crontab": "",
         "once": true,
         "onceDelay": "3",
@@ -1189,7 +1215,8 @@
                 "29347bb9.e75c84"
             ],
             [
-                "fefb1b5b.c3fe08"
+                "fefb1b5b.c3fe08",
+                "687ae830.ad12b8"
             ]
         ]
     },
@@ -1271,7 +1298,7 @@
         "statusVal": "",
         "statusType": "auto",
         "x": 840,
-        "y": 640,
+        "y": 620,
         "wires": []
     },
     {
@@ -2485,10 +2512,10 @@
         "order": 1,
         "width": 0,
         "height": 0,
-        "format": "<table border=1>\n    <tr>\n        <th ng-hide=\"true\">Market</th>\n        <th>Ticker</th>\n        <th>Name</th>\n        <th>Price</th>\n        <th>Share</th>\n        <th>Account</th>\n        <th>Delivery date</th>\n        <th ng-hide=\"true\">Delivery date(raw)</th>\n        <th>Trade</th>\n        <th ng-hide=\"true\">Update date</th>\n        <th>Control</th>\n    </tr>\n    <tr ng-repeat=\"payload in msg.payload\" ng-hide=\"payload.delete_flag\">\n        <td ng-hide=\"true\">{{ payload.market }}</td>\n        <td>{{ payload.ticker }}</td>\n        <td>{{ payload.name }}</td>\n        <td>{{ payload.price }}</td>\n        <td>{{ payload.share }}</td>\n        <td>{{ payload.account }}</td>\n        <td>{{ payload.delivery_date_ui }}</td>\n        <td ng-hide=\"true\">{{ payload.delivery_date }}</td>\n        <td>{{ payload.trade }}</td>\n        <td ng-hide=\"true\">{{ payload.update_date }}</td>\n        <td>\n            <md-button tr ng-click=\"send([{payload}])\">Del\n            </md-button>\n        </td>\n    </tr>\n</table>",
+        "format": "<table border=1>\n    <tr>\n        <th ng-hide=\"true\">Market</th>\n        <th>Ticker</th>\n        <th>Name</th>\n        <th>Price</th>\n        <th>Share</th>\n        <th>Account</th>\n        <th>Delivery date</th>\n        <th ng-hide=\"true\">Delivery date(raw)</th>\n        <th>Trade</th>\n        <th ng-hide=\"true\">Update date</th>\n        <th>Control</th>\n    </tr>\n    <tr ng-repeat=\"payload in msg.payload | orderBy:'delivery_date'\" ng-hide=\"payload.delete_flag\">\n        <td ng-hide=\"true\">{{ payload.market }}</td>\n        <td>{{ payload.ticker }}</td>\n        <td>{{ payload.name }}</td>\n        <td>{{ payload.price }}</td>\n        <td>{{ payload.share }}</td>\n        <td>{{ payload.account }}</td>\n        <td>{{ payload.delivery_date_ui }}</td>\n        <td ng-hide=\"true\">{{ payload.delivery_date }}</td>\n        <td>{{ payload.trade }}</td>\n        <td ng-hide=\"true\">{{ payload.update_date }}</td>\n        <td>\n            <md-button tr ng-click=\"send([{payload}])\">Del\n            </md-button>\n        </td>\n    </tr>\n</table>",
         "storeOutMessages": false,
         "fwdInMessages": false,
-        "resendOnRefresh": false,
+        "resendOnRefresh": true,
         "templateScope": "local",
         "x": 190,
         "y": 820,
@@ -2498,5 +2525,164 @@
                 "6d0ed7fd.c7cfd8"
             ]
         ]
+    },
+    {
+        "id": "45a4f465.cdea7c",
+        "type": "ui_template",
+        "z": "ba4aa062.76011",
+        "group": "4a32f7f6.0173f8",
+        "name": "ポートフォリオ一覧",
+        "order": 2,
+        "width": 0,
+        "height": 0,
+        "format": "<table border=1>\n    <tr>\n        <th>Market</th>\n        <th>Ticker</th>\n        <th>Name</th>\n        <th>Price</th>\n        <th>Share</th>\n        <th>Account</th>\n    </tr>\n    <tr ng-repeat=\"payload in msg.payload\">\n        <td>{{ payload.market }}</td>\n        <td>{{ payload.ticker }}</td>\n        <td>{{ payload.name }}</td>\n        <td>{{ payload.price }}</td>\n        <td>{{ payload.share }}</td>\n        <td>{{ payload.account }}</td>\n    </tr>\n</table>",
+        "storeOutMessages": false,
+        "fwdInMessages": false,
+        "resendOnRefresh": true,
+        "templateScope": "local",
+        "x": 780,
+        "y": 340,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "687ae830.ad12b8",
+        "type": "link out",
+        "z": "96650511.bea1c8",
+        "name": "自 売買履歴情報ログ",
+        "links": [
+            "c7cc1909.8ed6b8"
+        ],
+        "x": 775,
+        "y": 660,
+        "wires": []
+    },
+    {
+        "id": "c7cc1909.8ed6b8",
+        "type": "link in",
+        "z": "ba4aa062.76011",
+        "name": "至 ポートフォリオ一覧",
+        "links": [
+            "687ae830.ad12b8"
+        ],
+        "x": 255,
+        "y": 140,
+        "wires": [
+            [
+                "aacb895e.909d18"
+            ]
+        ]
+    },
+    {
+        "id": "aacb895e.909d18",
+        "type": "function",
+        "z": "ba4aa062.76011",
+        "name": "削除フラグフィルタ",
+        "func": "const payloads = msg.payload;\nlet commit = [];\nfor (const count in payloads) {\n    if (payloads[count].delete_flag === false) {\n        commit.push(payloads[count]);\n    }\n}\nmsg.payload = commit;\n\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 480,
+        "y": 140,
+        "wires": [
+            [
+                "4bff3e84.4e0a1",
+                "13551d99.70b232"
+            ]
+        ]
+    },
+    {
+        "id": "4bff3e84.4e0a1",
+        "type": "debug",
+        "z": "ba4aa062.76011",
+        "name": "",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 730,
+        "y": 160,
+        "wires": []
+    },
+    {
+        "id": "13551d99.70b232",
+        "type": "function",
+        "z": "ba4aa062.76011",
+        "name": "ticker>account毎 データ変換",
+        "func": "const payloads = msg.payload;\nlet commit = {};\nfor (const count in payloads) {\n    const payload = payloads[count];\n    const market = payload.market;\n    const ticker = payload.ticker;\n    const account = payload.account;\n\n    if (Object.keys(commit).indexOf(market) !== -1) {\n\n        // リスト済みMarket\n        if (Object.keys(commit[market]).indexOf(ticker) !== -1) {\n\n            // リスト済みticker\n            if ((Object.keys(commit[market][ticker]).indexOf(account) !== -1)) {\n\n                // リスト済みaccount\n                commit[market][ticker][account].push(payload);\n            } else {\n                // 未リスティングaccount\n                commit[market][ticker][account] = [payload];\n            }\n\n        } else {\n            // 未リスティングticker\n            commit[market][ticker] = {};\n            commit[market][ticker][account] = [payload];\n        }\n    } else {\n        // 未リスティングmarket\n        commit[market] = {};\n        commit[market][ticker] = {};\n        commit[market][ticker][account] = [payload];\n    }\n}\nmsg.payload = commit;\n\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 500,
+        "y": 200,
+        "wires": [
+            [
+                "8d149750.10db08",
+                "398c9192.6549ee"
+            ]
+        ]
+    },
+    {
+        "id": "8d149750.10db08",
+        "type": "debug",
+        "z": "ba4aa062.76011",
+        "name": "",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 730,
+        "y": 220,
+        "wires": []
+    },
+    {
+        "id": "398c9192.6549ee",
+        "type": "function",
+        "z": "ba4aa062.76011",
+        "name": "ポートフォリオ データ変換",
+        "func": "const payloads = msg.payload;\n\nlet commit = [];\nfor (const market in payloads) {\n    for (const ticker in payloads[market]) {\n        for (const account in payloads[market][ticker]) {\n            // 日付順に入れ替え\n            const datalist = payloads[market][ticker][account];\n            const sorted = datalist.sort(sort_delivery_date);\n            // 残高計算\n            let balance = calc_balance(sorted);\n            balance.market = datalist[0].market;\n            balance.ticker = datalist[0].ticker;\n            balance.name = datalist[0].name;\n            balance.account = datalist[0].account;\n            commit.push(balance);\n        }\n    }\n}\nmsg.payload = commit;\n\nreturn msg;\n\n\n// 日付並べ替え\nfunction sort_delivery_date(a, b) {\n    if (a.delivery_date >= b.delivery_date) {\n        return 1;\n    } else {\n        return -1;\n    }\n}\n\n// 平均株価・残高(株数)計算\nfunction calc_balance(dataArray) {\n    let temp = {\n        price: 0.0,\n        share: 0,\n    };\n    for (const element of dataArray) {\n        if (element.trade === \"buy\") {\n            temp.price = (temp.price * temp.share + parseFloat(element.price) * Number(element.share))\n                / (temp.share + Number(element.share));\n            temp.share = temp.share + Number(element.share);\n        } else {\n            // sell\n            temp.share = temp.share - Number(element.share);\n            if (temp.share <= 0) { temp.price = 0 }\n        }\n    }\n    return temp;\n}",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 500,
+        "y": 260,
+        "wires": [
+            [
+                "5acab423.c3d89c",
+                "45a4f465.cdea7c"
+            ]
+        ]
+    },
+    {
+        "id": "5acab423.c3d89c",
+        "type": "debug",
+        "z": "ba4aa062.76011",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 730,
+        "y": 280,
+        "wires": []
     }
 ]
