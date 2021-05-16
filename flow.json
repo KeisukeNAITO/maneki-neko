@@ -2414,17 +2414,17 @@
         "options": [
             {
                 "label": "NYSE",
-                "value": "nyse",
+                "value": "NYSE",
                 "type": "str"
             },
             {
                 "label": "NASDAQ",
-                "value": "nasdaq",
+                "value": "NASDAQ",
                 "type": "str"
             },
             {
                 "label": "JPX",
-                "value": "jpx",
+                "value": "JPX",
                 "type": "str"
             }
         ],
@@ -2456,17 +2456,17 @@
         "options": [
             {
                 "label": "General",
-                "value": "general",
+                "value": "General",
                 "type": "str"
             },
             {
                 "label": "Specified",
-                "value": "specified",
+                "value": "Specified",
                 "type": "str"
             },
             {
                 "label": "NISA",
-                "value": "nisa",
+                "value": "NISA",
                 "type": "str"
             }
         ],
@@ -2535,7 +2535,7 @@
         "order": 2,
         "width": 0,
         "height": 0,
-        "format": "<table border=1>\n    <tr>\n        <th>Market</th>\n        <th>Ticker</th>\n        <th>Name</th>\n        <th>Price</th>\n        <th>Share</th>\n        <th>Account</th>\n    </tr>\n    <tr ng-repeat=\"payload in msg.payload\">\n        <td>{{ payload.market }}</td>\n        <td>{{ payload.ticker }}</td>\n        <td>{{ payload.name }}</td>\n        <td>{{ payload.price }}</td>\n        <td>{{ payload.share }}</td>\n        <td>{{ payload.account }}</td>\n    </tr>\n</table>",
+        "format": "<table border=1>\n    <tr>\n        <th>Market</th>\n        <th>Ticker</th>\n        <th>Name</th>\n        <th>Price</th>\n        <th>Share</th>\n        <th>Account</th>\n    </tr>\n    <tr ng-repeat=\"payload in msg.payload\">\n        <td>{{ payload.market }}</td>\n        <td>{{ payload.ticker }}</td>\n        <td>{{ payload.name }}</td>\n        <td>{{ payload.price | number }}</td>\n        <td>{{ payload.share }}</td>\n        <td>{{ payload.account }}</td>\n    </tr>\n</table>",
         "storeOutMessages": false,
         "fwdInMessages": false,
         "resendOnRefresh": true,
@@ -2616,7 +2616,7 @@
         "type": "function",
         "z": "ba4aa062.76011",
         "name": "ticker>account毎 データ変換",
-        "func": "const payloads = msg.payload;\nlet commit = {};\nfor (const count in payloads) {\n    const payload = payloads[count];\n    const market = payload.market;\n    const ticker = payload.ticker;\n    const account = payload.account;\n\n    if (Object.keys(commit).indexOf(market) !== -1) {\n\n        // リスト済みMarket\n        if (Object.keys(commit[market]).indexOf(ticker) !== -1) {\n\n            // リスト済みticker\n            if ((Object.keys(commit[market][ticker]).indexOf(account) !== -1)) {\n\n                // リスト済みaccount\n                commit[market][ticker][account].push(payload);\n            } else {\n                // 未リスティングaccount\n                commit[market][ticker][account] = [payload];\n            }\n\n        } else {\n            // 未リスティングticker\n            commit[market][ticker] = {};\n            commit[market][ticker][account] = [payload];\n        }\n    } else {\n        // 未リスティングmarket\n        commit[market] = {};\n        commit[market][ticker] = {};\n        commit[market][ticker][account] = [payload];\n    }\n}\nmsg.payload = commit;\n\nreturn msg;",
+        "func": "const payloads = msg.payload;\n\nlet commit = {};\nfor (const count in payloads) {\n    const payload = payloads[count];\n    const market = payload.market;\n    const ticker = payload.ticker;\n    const account = payload.account;\n\n    if (Object.keys(commit).indexOf(market) !== -1) {\n        // リスト済みMarket\n        if (Object.keys(commit[market]).indexOf(ticker) !== -1) {\n            // リスト済みticker\n            if ((Object.keys(commit[market][ticker]).indexOf(account) !== -1)) {\n                // リスト済みaccount\n                commit[market][ticker][account].push(payload);\n            } else {\n                // 未リスティングaccount\n                commit[market][ticker][account] = [payload];\n            }\n        } else {\n            // 未リスティングticker\n            commit[market][ticker] = {};\n            commit[market][ticker][account] = [payload];\n        }\n    } else {\n        // 未リスティングmarket\n        commit[market] = {};\n        commit[market][ticker] = {};\n        commit[market][ticker][account] = [payload];\n    }\n}\nmsg.payload = commit;\n\nreturn msg;",
         "outputs": 1,
         "noerr": 0,
         "initialize": "",
