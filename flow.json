@@ -30,6 +30,13 @@
         "env": []
     },
     {
+        "id": "ba4aa062.76011",
+        "type": "tab",
+        "label": "ポートフォリオ コレクタ",
+        "disabled": false,
+        "info": ""
+    },
+    {
         "id": "8d504cb3.b79d5",
         "type": "subflow",
         "name": "データ取得",
@@ -287,7 +294,7 @@
     {
         "id": "fa70cfdf.23743",
         "type": "ui_group",
-        "name": "取引",
+        "name": "取引情報登録",
         "tab": "22bc5b3f.8ee744",
         "order": 1,
         "disp": true,
@@ -302,14 +309,14 @@
         "tab": "22bc5b3f.8ee744",
         "order": 2,
         "disp": true,
-        "width": "12",
+        "width": "15",
         "collapse": true,
         "className": ""
     },
     {
         "id": "22bc5b3f.8ee744",
         "type": "ui_tab",
-        "name": "TRADING",
+        "name": "取引情報",
         "icon": "dashboard",
         "order": 2,
         "disabled": false,
@@ -318,7 +325,7 @@
     {
         "id": "23239e08bde81218",
         "type": "ui_tab",
-        "name": "DIVIDEND GRAPH",
+        "name": "配当情報",
         "icon": "dashboard",
         "order": 2,
         "disabled": false,
@@ -327,11 +334,42 @@
     {
         "id": "b7b4279e5e56a662",
         "type": "ui_group",
-        "name": "年初来総配当額",
+        "name": "配当",
+        "tab": "439741d2.8e1f",
+        "order": 2,
+        "disp": true,
+        "width": "7",
+        "collapse": false,
+        "className": ""
+    },
+    {
+        "id": "439741d2.8e1f",
+        "type": "ui_tab",
+        "name": "ホーム",
+        "icon": "dashboard",
+        "order": 1,
+        "disabled": false,
+        "hidden": false
+    },
+    {
+        "id": "4a32f7f6.0173f8",
+        "type": "ui_group",
+        "name": "ボートフォリオ",
+        "tab": "439741d2.8e1f",
+        "order": 1,
+        "disp": true,
+        "width": "12",
+        "collapse": false,
+        "className": ""
+    },
+    {
+        "id": "935b15333025d449",
+        "type": "ui_group",
+        "name": "テスト用",
         "tab": "23239e08bde81218",
         "order": 1,
         "disp": true,
-        "width": "7",
+        "width": "15",
         "collapse": false,
         "className": ""
     },
@@ -345,6 +383,7 @@
         "chunk": false,
         "sendError": false,
         "encoding": "utf8",
+        "allProps": false,
         "x": 530,
         "y": 180,
         "wires": [
@@ -566,6 +605,7 @@
         "chunk": false,
         "sendError": false,
         "encoding": "utf8",
+        "allProps": false,
         "x": 570,
         "y": 220,
         "wires": [
@@ -1203,6 +1243,7 @@
         "type": "link out",
         "z": "96650511.bea1c8",
         "name": "自 表示更新",
+        "mode": "link",
         "links": [
             "5593bffa.3d79f"
         ],
@@ -2243,6 +2284,7 @@
         "ok": "OK",
         "cancel": "Cancel",
         "raw": false,
+        "className": "",
         "topic": "",
         "name": "",
         "x": 510,
@@ -2260,9 +2302,9 @@
         "group": "c4cbeafa.163d58",
         "name": "売買履歴情報ログ",
         "order": 1,
-        "width": 12,
+        "width": "15",
         "height": "10",
-        "format": "<table border=1>\n    <tr>\n        <th ng-hide=\"true\">Market</th>\n        <th>銘柄コード<br>ティッカー</th>\n        <th>銘柄名</th>\n        <th>価格</th>\n        <th>数量</th>\n        <th>口座</th>\n        <th>受け渡し日</th>\n        <th ng-hide=\"true\">Delivery date(raw)</th>\n        <th>取引</th>\n        <th ng-hide=\"true\">Update date</th>\n        <th>修正</th>\n    </tr>\n    <tr ng-repeat=\"payload in msg.payload\" ng-hide=\"payload.delete_flag\">\n        <td ng-hide=\"true\">{{ payload.market }}</td>\n        <td>{{ payload.ticker }}</td>\n        <td>{{ payload.name }}</td>\n        <td>{{ payload.price }}</td>\n        <td>{{ payload.share }}</td>\n        <td>{{ payload.account }}</td>\n        <td>{{ payload.delivery_date_ui }}</td>\n        <td ng-hide=\"true\">{{ payload.delivery_date }}</td>\n        <td>{{ payload.trade }}</td>\n        <td ng-hide=\"true\">{{ payload.update_date }}</td>\n        <td>\n            <md-button tr ng-click=\"send([{payload}])\">削除\n            </md-button>\n        </td>\n    </tr>\n</table>",
+        "format": "<table border=1>\n    <tr>\n        <th>取引ID</th>\n        <th>市場</th>\n        <th>銘柄コード<br>ティッカー</th>\n        <th>銘柄名</th>\n        <th>価格</th>\n        <th>数量</th>\n        <th>口座</th>\n        <th>受け渡し日</th>\n        <th ng-hide=\"true\">Delivery date(raw)</th>\n        <th>取引</th>\n        <th ng-hide=\"true\">Update date</th>\n        <th>修正</th>\n    </tr>\n    <tr ng-repeat=\"payload in msg.payload\" ng-hide=\"payload.delete_flag\">\n        <td></td>\n        <td>{{ payload.market }}</td>\n        <td>{{ payload.ticker }}</td>\n        <td>{{ payload.name }}</td>\n        <td>{{ payload.price }}</td>\n        <td>{{ payload.share }}</td>\n        <td>{{ payload.account }}</td>\n        <td>{{ payload.delivery_date_ui }}</td>\n        <td ng-hide=\"true\">{{ payload.delivery_date }}</td>\n        <td>{{ payload.trade }}</td>\n        <td ng-hide=\"true\">{{ payload.update_date }}</td>\n        <td>\n            <md-button tr ng-click=\"send([{payload}])\">削除\n            </md-button>\n        </td>\n    </tr>\n</table>",
         "storeOutMessages": false,
         "fwdInMessages": false,
         "resendOnRefresh": false,
@@ -2285,6 +2327,20 @@
         "info": "",
         "x": 720,
         "y": 340,
+        "wires": []
+    },
+    {
+        "id": "687ae830.ad12b8",
+        "type": "link out",
+        "z": "96650511.bea1c8",
+        "name": "自 売買履歴情報ログ",
+        "mode": "link",
+        "links": [
+            "5902811cdf08199a",
+            "c7cc1909.8ed6b8"
+        ],
+        "x": 775,
+        "y": 660,
         "wires": []
     },
     {
@@ -2451,108 +2507,123 @@
         ]
     },
     {
-        "id": "17ef17cd.b65b18",
-        "type": "subflow:8d504cb3.b79d5",
+        "id": "c0d06dd7403dce07",
+        "type": "comment",
         "z": "a374d263.d8244",
-        "name": "",
-        "x": 440,
-        "y": 220,
-        "wires": [
-            [
-                "3553faa.6dc8f06"
-            ],
-            [
-                "70fca98b.08d438"
-            ]
-        ]
-    },
-    {
-        "id": "2ad9dcfc.174894",
-        "type": "inject",
-        "z": "a374d263.d8244",
-        "name": "filename on",
-        "props": [
-            {
-                "p": "payload"
-            },
-            {
-                "p": "filename",
-                "v": "test.json",
-                "vt": "str"
-            }
-        ],
-        "repeat": "",
-        "crontab": "",
-        "once": false,
-        "onceDelay": 0.1,
-        "topic": "",
-        "payload": "",
-        "payloadType": "date",
-        "x": 140,
-        "y": 240,
-        "wires": [
-            [
-                "17ef17cd.b65b18"
-            ]
-        ]
-    },
-    {
-        "id": "f8ee738b.b85de",
-        "type": "inject",
-        "z": "a374d263.d8244",
-        "name": "filename off",
-        "props": [
-            {
-                "p": "payload"
-            }
-        ],
-        "repeat": "",
-        "crontab": "",
-        "once": false,
-        "onceDelay": 0.1,
-        "topic": "",
-        "payload": "",
-        "payloadType": "date",
-        "x": 140,
-        "y": 200,
-        "wires": [
-            [
-                "17ef17cd.b65b18"
-            ]
-        ]
-    },
-    {
-        "id": "3553faa.6dc8f06",
-        "type": "debug",
-        "z": "a374d263.d8244",
-        "name": "",
-        "active": true,
-        "tosidebar": true,
-        "console": false,
-        "tostatus": false,
-        "complete": "true",
-        "targetType": "full",
-        "statusVal": "",
-        "statusType": "auto",
-        "x": 720,
+        "name": "取引履歴",
+        "info": "ユーザの取引履歴データ。\nデータの物理削除は許容しない。\n\n## 永続化ファイル名\n\nファイル名は環境変数TRADE_HISTORY(.json)に設定されること。\n\n## データフォーマット\n\n|  #  |  論理名  |  物理名  |  タイプ  |  詳細  |\n| ---- | ---- | ---- | ---- | ---- |\n|  1   |  取引ID  |  trade_id  |  Number  |  取引番号  |\n|  2   |  市場  |  market  |  String  |  |\n|  3   |  ティッカー  |  ticker  |  String  |  |\n|  4   |  銘柄名  |  name  |  String  |  |\n|  5   |  価格  |  price  |  Number  |  |\n|  6   |  数量  |  share  |  Number  |  |\n|  7   |  預り区分  |  account  |  String  |  |\n|  8   |  取引区分  |  trade  |  String  |  |\n|  9   |  受渡日  |  delivery_date  |  Date  |  |\n|  10  |  更新日時  |  update_date  |  Date  | こちらで設定 |\n|  11  |  削除フラグ  |  delete_flag  |  Boolean  |  こちらで設定 |\n",
+        "x": 120,
         "y": 200,
         "wires": []
     },
     {
-        "id": "70fca98b.08d438",
-        "type": "debug",
+        "id": "83e711979a42f1e2",
+        "type": "comment",
         "z": "a374d263.d8244",
-        "name": "",
-        "active": true,
-        "tosidebar": true,
-        "console": false,
-        "tostatus": false,
-        "complete": "true",
-        "targetType": "full",
-        "statusVal": "",
-        "statusType": "auto",
-        "x": 720,
+        "name": "配当情報登録履歴",
+        "info": "ユーザの配当情報登録履歴データ。\nデータの物理削除は許容しない。\n\n## 永続化ファイル名\n\nファイル名は環境変数DIVIDEND_REGISTRATION_HISTORY(.json)に設定されること。\n\n## データフォーマット\n\n|  #  |  論理名  |  物理名  |  タイプ  |  詳細  |\n| ---- | ---- | ---- | ---- | ---- |\n|  1   |  市場  |  market  |  String  |  |\n|  2   |  ティッカー  |  ticker  |  String  |  |\n|  3   |  銘柄名  |  name  |  String  |  |\n|  4   |  預り区分  |  account  |  String  |  |\n|  5   |  配当単価  |  dividend_price  |  Number  |  |\n|  6   |  権利落ち日  |  ex_rights_date  |  Date  |  |\n|  7  |  更新日時  |  update_date  |  Date  | こちらで設定 |\n|  8  |  削除フラグ  |  delete_flag  |  Boolean  |  こちらで設定 |\n",
+        "x": 150,
+        "y": 500,
+        "wires": []
+    },
+    {
+        "id": "79ccd417cf1185fc",
+        "type": "comment",
+        "z": "a374d263.d8244",
+        "name": "取引履歴 全量データ取得",
+        "info": "",
+        "x": 190,
         "y": 240,
+        "wires": []
+    },
+    {
+        "id": "300639532015dccd",
+        "type": "comment",
+        "z": "a374d263.d8244",
+        "name": "取引履歴 指定データ追加",
+        "info": "",
+        "x": 190,
+        "y": 320,
+        "wires": []
+    },
+    {
+        "id": "91a114d3c9dedc8b",
+        "type": "comment",
+        "z": "a374d263.d8244",
+        "name": "取引履歴 指定データ削除(論理)",
+        "info": "",
+        "x": 210,
+        "y": 400,
+        "wires": []
+    },
+    {
+        "id": "d96fbe93f1144e9b",
+        "type": "comment",
+        "z": "a374d263.d8244",
+        "name": "取引履歴 指定データ更新",
+        "info": "",
+        "x": 190,
+        "y": 360,
+        "wires": []
+    },
+    {
+        "id": "0f4e5a31dcce6b90",
+        "type": "comment",
+        "z": "a374d263.d8244",
+        "name": "配当情報登録履歴 全量データ取得",
+        "info": "",
+        "x": 220,
+        "y": 540,
+        "wires": []
+    },
+    {
+        "id": "531f85fad8c3b550",
+        "type": "comment",
+        "z": "a374d263.d8244",
+        "name": "配当情報登録履歴 指定データ追加",
+        "info": "",
+        "x": 220,
+        "y": 580,
+        "wires": []
+    },
+    {
+        "id": "f17d9b96d60506a9",
+        "type": "comment",
+        "z": "a374d263.d8244",
+        "name": "配当情報登録履歴 指定データ削除(論理)",
+        "info": "",
+        "x": 240,
+        "y": 660,
+        "wires": []
+    },
+    {
+        "id": "5ee7e15966b4764b",
+        "type": "comment",
+        "z": "a374d263.d8244",
+        "name": "配当情報登録履歴 指定データ更新",
+        "info": "",
+        "x": 220,
+        "y": 620,
+        "wires": []
+    },
+    {
+        "id": "521a5e1ab4d95c5d",
+        "type": "comment",
+        "z": "a374d263.d8244",
+        "name": "取引履歴 更新時全量データ取得",
+        "info": "",
+        "x": 210,
+        "y": 280,
+        "wires": []
+    },
+    {
+        "id": "ad140fd7f65f4890",
+        "type": "comment",
+        "z": "a374d263.d8244",
+        "name": "配当履歴",
+        "info": "ユーザの配当履歴データ。\nデータの物理削除は許容しない。\n\n## 永続化ファイル名\n\nファイル名は環境変数DIVIDEND_HISTORY(.json)に設定されること。\n\n## データフォーマット\n\n|  #  |  論理名  |  物理名  |  タイプ  |  詳細  |\n| ---- | ---- | ---- | ---- | ---- |\n|  1   |  市場  |  market  |  String  |  |\n|  2   |  ティッカー  |  ticker  |  String  |  |\n|  3   |  銘柄名  |  name  |  String  |  |\n|  4   |  預り区分  |  account  |  String  |  |\n|  5   |  配当単価  |  dividend_price  |  Number  |  |\n|  6   |  数量  |  share  |  Number  |  |\n|  7   |  権利落ち日  |  ex_rights_date  |  Date  |  |\n|  8  |  更新日時  |  update_date  |  Date  | こちらで設定 |\n|  9  |  削除フラグ  |  delete_flag  |  Boolean  |  こちらで設定 |\n",
+        "x": 120,
+        "y": 760,
         "wires": []
     },
     {
@@ -2733,62 +2804,175 @@
         ]
     },
     {
-        "id": "ba4aa062.76011",
-        "type": "tab",
-        "label": "ポートフォリオ コレクタ",
-        "disabled": false,
-        "info": ""
+        "id": "5902811cdf08199a",
+        "type": "link in",
+        "z": "cabf31544059c6ed",
+        "name": "至 ポートフォリオ一覧",
+        "links": [
+            "687ae830.ad12b8"
+        ],
+        "x": 205,
+        "y": 60,
+        "wires": [
+            [
+                "0d481f3f7e2c0fa2"
+            ]
+        ]
     },
     {
-        "id": "439741d2.8e1f",
-        "type": "ui_tab",
-        "name": "PORTFOLIO",
-        "icon": "dashboard",
-        "order": 1,
-        "disabled": false,
-        "hidden": false
+        "id": "0d481f3f7e2c0fa2",
+        "type": "function",
+        "z": "cabf31544059c6ed",
+        "name": "削除フラグフィルタ",
+        "func": "const payloads = msg.payload;\nlet commit = [];\nfor (const count in payloads) {\n    if (payloads[count].delete_flag === false) {\n        commit.push(payloads[count]);\n    }\n}\nmsg.payload = commit;\n\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 380,
+        "y": 60,
+        "wires": [
+            [
+                "e40de7da9f6a72e1"
+            ]
+        ]
     },
     {
-        "id": "4a32f7f6.0173f8",
-        "type": "ui_group",
-        "name": "PORTFOLIO LIST",
-        "tab": "439741d2.8e1f",
-        "order": 1,
-        "disp": true,
-        "width": "12",
-        "collapse": false
+        "id": "e40de7da9f6a72e1",
+        "type": "function",
+        "z": "cabf31544059c6ed",
+        "name": "ticker>account毎 データ変換",
+        "func": "const payloads = msg.payload;\n\nlet commit = {};\nfor (const count in payloads) {\n    const payload = payloads[count];\n    const market = payload.market;\n    const ticker = payload.ticker;\n    const account = payload.account;\n\n    if (Object.keys(commit).indexOf(market) !== -1) {\n        // リスト済みMarket\n        if (Object.keys(commit[market]).indexOf(ticker) !== -1) {\n            // リスト済みticker\n            if ((Object.keys(commit[market][ticker]).indexOf(account) !== -1)) {\n                // リスト済みaccount\n                commit[market][ticker][account].push(payload);\n            } else {\n                // 未リスティングaccount\n                commit[market][ticker][account] = [payload];\n            }\n        } else {\n            // 未リスティングticker\n            commit[market][ticker] = {};\n            commit[market][ticker][account] = [payload];\n        }\n    } else {\n        // 未リスティングmarket\n        commit[market] = {};\n        commit[market][ticker] = {};\n        commit[market][ticker][account] = [payload];\n    }\n}\nmsg.payload = commit;\n\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 400,
+        "y": 120,
+        "wires": [
+            [
+                "b234fbc0694613f6"
+            ]
+        ]
+    },
+    {
+        "id": "b234fbc0694613f6",
+        "type": "function",
+        "z": "cabf31544059c6ed",
+        "name": "ポートフォリオ 残高データ変換",
+        "func": "const payloads = msg.payload;\n\nlet commit = [];\nfor (const market in payloads) {\n    for (const ticker in payloads[market]) {\n        for (const account in payloads[market][ticker]) {\n            // 日付順に入れ替え\n            const datalist = payloads[market][ticker][account];\n            const sorted = datalist.sort(sort_delivery_date);\n            // 残高計算\n            let balance = calc_balance(sorted);\n            balance.market = datalist[0].market;\n            balance.ticker = datalist[0].ticker;\n            balance.name = datalist[0].name;\n            balance.account = datalist[0].account;\n            commit.push(balance);\n        }\n    }\n}\nmsg.payload = commit;\n\nreturn msg;\n\n\n// 日付並べ替え\nfunction sort_delivery_date(a, b) {\n    if (a.delivery_date >= b.delivery_date) {\n        return 1;\n    } else {\n        return -1;\n    }\n}\n\n// 平均株価・残高(株数)計算\nfunction calc_balance(dataArray) {\n    let temp = {\n        price: 0.0,\n        share: 0,\n    };\n    for (const element of dataArray) {\n        if (element.trade === \"buy\") {\n            temp.price = (temp.price * temp.share + parseFloat(element.price) * Number(element.share))\n                / (temp.share + Number(element.share));\n            temp.share = temp.share + Number(element.share);\n        } else {\n            // sell\n            temp.share = temp.share - Number(element.share);\n            if (temp.share <= 0) { temp.price = 0 }\n        }\n    }\n    return temp;\n}",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 410,
+        "y": 180,
+        "wires": [
+            [
+                "e77b13b43f785fec"
+            ]
+        ]
+    },
+    {
+        "id": "e77b13b43f785fec",
+        "type": "function",
+        "z": "cabf31544059c6ed",
+        "name": "表示名変換",
+        "func": "const payloads = msg.payload;\n\nlet commit = [];\nfor (const count in payloads) {\n    switch (payloads[count].market) {\n        case \"nyse\":\n            payloads[count].market = \"NYSE\";\n            break;\n        case \"nasdaq\":\n            payloads[count].market = \"NASDAQ\";\n            break;\n        case \"jpx\":\n            payloads[count].market = \"東証\";\n            break;\n        default:\n    }\n    \n    switch (payloads[count].account) {\n        case \"general\":\n            payloads[count].account = \"一般預り\";\n            break;\n        case \"specified\":\n            payloads[count].account = \"特定預り\";\n            break;\n        case \"nisa\":\n            payloads[count].account = \"NISA預り\";\n            break;\n        default:\n    }\n    commit.push(payloads[count]);\n}\nmsg.payload = commit;\n\nreturn msg;\n",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 350,
+        "y": 240,
+        "wires": [
+            [
+                "0f442eb161558b93",
+                "d3626bd9e8dce402"
+            ]
+        ]
+    },
+    {
+        "id": "0f442eb161558b93",
+        "type": "function",
+        "z": "cabf31544059c6ed",
+        "name": "",
+        "func": "let test = [];\ntest = msg.payload[0];\nmsg.payload = test;\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 340,
+        "y": 420,
+        "wires": [
+            [
+                "6876ed7e1c4b4b18"
+            ]
+        ]
+    },
+    {
+        "id": "6876ed7e1c4b4b18",
+        "type": "debug",
+        "z": "cabf31544059c6ed",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 670,
+        "y": 420,
+        "wires": []
+    },
+    {
+        "id": "d3626bd9e8dce402",
+        "type": "ui_template",
+        "z": "cabf31544059c6ed",
+        "group": "935b15333025d449",
+        "name": "ポートフォリオ",
+        "order": 2,
+        "width": 0,
+        "height": 0,
+        "format": "<table border=1>\n    <tr>\n        <th>市場</th>\n        <th>銘柄コード<br>ティッカー</th>\n        <th>銘柄名</th>\n        <th>配当金額</th>\n        <th>権利落ち日</th>\n        <th>預り区分</th>\n    </tr>\n    <tr ng-repeat=\"payload in msg.payload\">\n        <td>{{ payload.market }}</td>\n        <td>{{ payload.ticker }}</td>\n        <td>{{ payload.name }}</td>\n        <td>{{ payload.price | number }}</td>\n        <td></td>\n        <td>{{ payload.account }}</td>\n    </tr>\n</table>",
+        "storeOutMessages": false,
+        "fwdInMessages": false,
+        "resendOnRefresh": true,
+        "templateScope": "local",
+        "className": "",
+        "x": 680,
+        "y": 240,
+        "wires": [
+            []
+        ]
     },
     {
         "id": "45a4f465.cdea7c",
         "type": "ui_template",
         "z": "ba4aa062.76011",
         "group": "4a32f7f6.0173f8",
-        "name": "ポートフォリオ一覧",
+        "name": "ポートフォリオ",
         "order": 2,
         "width": 0,
         "height": 0,
-        "format": "<table border=1>\n    <tr>\n        <th>Market</th>\n        <th>Ticker</th>\n        <th>Name</th>\n        <th>Price</th>\n        <th>Share</th>\n        <th>Account</th>\n    </tr>\n    <tr ng-repeat=\"payload in msg.payload\">\n        <td>{{ payload.market }}</td>\n        <td>{{ payload.ticker }}</td>\n        <td>{{ payload.name }}</td>\n        <td>{{ payload.price | number }}</td>\n        <td>{{ payload.share }}</td>\n        <td>{{ payload.account }}</td>\n    </tr>\n</table>",
+        "format": "<table border=1>\n    <tr>\n        <th>市場</th>\n        <th>銘柄コード<br>ティッカー</th>\n        <th>銘柄名</th>\n        <th>取得価格</th>\n        <th>保有数量</th>\n        <th>預り区分</th>\n    </tr>\n    <tr ng-repeat=\"payload in msg.payload\">\n        <td>{{ payload.market }}</td>\n        <td>{{ payload.ticker }}</td>\n        <td>{{ payload.name }}</td>\n        <td>{{ payload.price | number }}</td>\n        <td>{{ payload.share }}</td>\n        <td>{{ payload.account }}</td>\n    </tr>\n</table>",
         "storeOutMessages": false,
         "fwdInMessages": false,
         "resendOnRefresh": true,
         "templateScope": "local",
+        "className": "",
         "x": 780,
-        "y": 340,
+        "y": 400,
         "wires": [
             []
         ]
-    },
-    {
-        "id": "687ae830.ad12b8",
-        "type": "link out",
-        "z": "96650511.bea1c8",
-        "name": "自 売買履歴情報ログ",
-        "links": [
-            "c7cc1909.8ed6b8"
-        ],
-        "x": 775,
-        "y": 660,
-        "wires": []
     },
     {
         "id": "c7cc1909.8ed6b8",
@@ -2839,7 +3023,7 @@
         "targetType": "full",
         "statusVal": "",
         "statusType": "auto",
-        "x": 730,
+        "x": 750,
         "y": 160,
         "wires": []
     },
@@ -2876,7 +3060,7 @@
         "targetType": "full",
         "statusVal": "",
         "statusType": "auto",
-        "x": 730,
+        "x": 750,
         "y": 220,
         "wires": []
     },
@@ -2884,24 +3068,61 @@
         "id": "398c9192.6549ee",
         "type": "function",
         "z": "ba4aa062.76011",
-        "name": "ポートフォリオ データ変換",
+        "name": "ポートフォリオ 残高データ変換",
         "func": "const payloads = msg.payload;\n\nlet commit = [];\nfor (const market in payloads) {\n    for (const ticker in payloads[market]) {\n        for (const account in payloads[market][ticker]) {\n            // 日付順に入れ替え\n            const datalist = payloads[market][ticker][account];\n            const sorted = datalist.sort(sort_delivery_date);\n            // 残高計算\n            let balance = calc_balance(sorted);\n            balance.market = datalist[0].market;\n            balance.ticker = datalist[0].ticker;\n            balance.name = datalist[0].name;\n            balance.account = datalist[0].account;\n            commit.push(balance);\n        }\n    }\n}\nmsg.payload = commit;\n\nreturn msg;\n\n\n// 日付並べ替え\nfunction sort_delivery_date(a, b) {\n    if (a.delivery_date >= b.delivery_date) {\n        return 1;\n    } else {\n        return -1;\n    }\n}\n\n// 平均株価・残高(株数)計算\nfunction calc_balance(dataArray) {\n    let temp = {\n        price: 0.0,\n        share: 0,\n    };\n    for (const element of dataArray) {\n        if (element.trade === \"buy\") {\n            temp.price = (temp.price * temp.share + parseFloat(element.price) * Number(element.share))\n                / (temp.share + Number(element.share));\n            temp.share = temp.share + Number(element.share);\n        } else {\n            // sell\n            temp.share = temp.share - Number(element.share);\n            if (temp.share <= 0) { temp.price = 0 }\n        }\n    }\n    return temp;\n}",
         "outputs": 1,
         "noerr": 0,
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 500,
+        "x": 510,
         "y": 260,
         "wires": [
             [
                 "5acab423.c3d89c",
-                "45a4f465.cdea7c"
+                "80e026ea2a1e9f17"
             ]
         ]
     },
     {
         "id": "5acab423.c3d89c",
+        "type": "debug",
+        "z": "ba4aa062.76011",
+        "name": "",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 750,
+        "y": 280,
+        "wires": []
+    },
+    {
+        "id": "80e026ea2a1e9f17",
+        "type": "function",
+        "z": "ba4aa062.76011",
+        "name": "表示名変換",
+        "func": "const payloads = msg.payload;\n\nlet commit = [];\nfor (const count in payloads) {\n    switch (payloads[count].market) {\n        case \"nyse\":\n            payloads[count].market = \"NYSE\";\n            break;\n        case \"nasdaq\":\n            payloads[count].market = \"NASDAQ\";\n            break;\n        case \"jpx\":\n            payloads[count].market = \"東証\";\n            break;\n        default:\n    }\n    \n    switch (payloads[count].account) {\n        case \"general\":\n            payloads[count].account = \"一般預り\";\n            break;\n        case \"specified\":\n            payloads[count].account = \"特定預り\";\n            break;\n        case \"nisa\":\n            payloads[count].account = \"NISA預り\";\n            break;\n        default:\n    }\n    commit.push(payloads[count]);\n}\nmsg.payload = commit;\n\nreturn msg;\n",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 450,
+        "y": 320,
+        "wires": [
+            [
+                "5908c3f8cb302749",
+                "45a4f465.cdea7c"
+            ]
+        ]
+    },
+    {
+        "id": "5908c3f8cb302749",
         "type": "debug",
         "z": "ba4aa062.76011",
         "name": "",
@@ -2913,8 +3134,8 @@
         "targetType": "full",
         "statusVal": "",
         "statusType": "auto",
-        "x": 730,
-        "y": 280,
+        "x": 750,
+        "y": 340,
         "wires": []
     }
 ]
